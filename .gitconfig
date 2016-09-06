@@ -11,3 +11,5 @@
   recommit = commit -c ORIG_HEAD
 [color "diff"]
 	meta = magenta
+[core]
+	trustctime = false

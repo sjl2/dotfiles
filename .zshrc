@@ -81,7 +81,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Aliases
 source ~/.aliases
-source ~/.lob_aliases
+#source ~/.private_aliases
 
 # editor
 export EDITOR=vim
@@ -109,15 +109,15 @@ export GREP_OPTIONS
 export PATH="$PATH:/opt/X11/bin"
 
 # nvm
-export NVM_DIR=~/.nvm
-source $NVM_DIR/nvm.sh
+#export NVM_DIR=~/.nvm
+#source $NVM_DIR/nvm.sh
 
 # avn
-[[ -s "$HOME/.avn/bin/avn.sh" ]] && source "$HOME/.avn/bin/avn.sh"
+#[[ -s "$HOME/.avn/bin/avn.sh" ]] && source "$HOME/.avn/bin/avn.sh"
 
 # rvm
-export PATH="$PATH:$HOME/.rvm/bin"
-source ~/.rvm/scripts/rvm
+#export PATH="$PATH:$HOME/.rvm/bin"
+#source ~/.rvm/scripts/rvm
 
 # .inputrc
 bindkey '^[OA' history-beginning-search-backward
