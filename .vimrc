@@ -1,58 +1,71 @@
 set nocompatible " be iMproved, required
 filetype off     " required
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+function! BuildYCM(info)
+  if a:info.status == 'installed' || a:info.force
+    !./install.sh
+  endif
+endfunction
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+function! Installjshint(info)
+  if a:info.status == 'installed' || a:info.force
+    !npm install -g jshint
+  endif
+endfunction
 
-" displays
-Plugin 'crusoexia/vim-monokai'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'scrooloose/nerdtree'
+call plug#begin('~/.vim/plugged')
 
-" plugins
-Plugin 'ryanoasis/vim-devicons'
-Plugin 'AndrewRadev/splitjoin.vim'
-Plugin 'Quramy/tsuquyomi'
-Plugin 'Shougo/vimproc'
-Plugin 'godlygeek/tabular'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
+" Aesthetic
+Plug 'crusoexia/vim-monokai'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'airblade/vim-gitgutter'
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'ryanoasis/vim-devicons'
+Plug 'junegunn/goyo.vim'
 
-" auto-completion
+" File Shortcuts
+Plug 'mileszs/ack.vim'
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
+
+" Code Shortcuts
+Plug 'godlygeek/tabular'
+Plug 'scrooloose/nerdcommenter'
 if v:version > 703
-  Plugin 'Valloric/YouCompleteMe'
+  Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
 endif
 
-" syntax files
-Plugin 'scrooloose/syntastic'
-Plugin 'digitaltoad/vim-jade'
-Plugin 'elixir-lang/vim-elixir'
-Plugin 'elzr/vim-json'
-Plugin 'leafgarland/typescript-vim'
-Plugin 'nono/vim-handlebars'
-Plugin 'pangloss/vim-javascript'
-Plugin 'tpope/vim-markdown'
-Plugin 'voithos/vim-python-syntax'
-Plugin 'fatih/vim-go'
+"" Syntax Plugs
+Plug 'sheerun/vim-polyglot'
+Plug 'pangloss/vim-javascript'
+Plug 'jelera/vim-javascript-syntax'
+Plug 'w0rp/ale'
 
 " testing
-Plugin 'janko-m/vim-test'
-Plugin 'benmills/vimux'
+Plug 'janko-m/vim-test'
+Plug 'benmills/vimux'
 
-" All of your Plugins must be added before the following line
-call vundle#end()                     " required
+call plug#end()
+
+" crusoexia/vim-monokai Theme
+syntax on
+colorscheme monokai
+set t_Co=256
+
+" Open .vimrc
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+
+" Source .vimrc
+nnoremap <leader>sv :source $MYVIMRC<cr>
 
 " basic config
-syntax on
 set number
 set ruler
 set colorcolumn=121
@@ -64,8 +77,6 @@ set undofile
 " fonts and icons
 set encoding=utf-8
 set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Plus\ Nerd\ File\ Types:h11
-set background=dark
-set t_Co=256
 
 " Visually moves up and down (for wrapped lines)
 nnoremap k gk
@@ -81,14 +92,19 @@ nnoremap L $
 vnoremap L $
 
 " better moving between windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
+noremap <C-j> <C-W>j
+noremap <C-k> <C-W>k
+noremap <C-h> <C-W>h
+noremap <C-l> <C-W>l
 
 " Move between buffers with tab and shift-tab
 nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :bprevious<CR>
+
+" fzf Buffers
+nnoremap <Leader>b :Buffers<CR>
+nnoremap <C-p> :Files<CR>
+"nnoremap <Leader>r :Tags<CR>
 
 " tabs/indents
 set shiftwidth=2                      " Default tab settings
@@ -115,6 +131,7 @@ let test#strategy = 'vimux'
 nmap <silent> <leader>t :TestNearest<CR>
 nmap <silent> <leader>f :TestFile<CR>
 nmap <silent> <leader>s :TestSuite<CR>
+
 " nerdtree
 "autocmd FileType nerdtree setlocal nolist
 
@@ -168,8 +185,6 @@ set laststatus=2
 " escape search highliting by hitting return
 nnoremap <CR> :noh<CR><CR>
 
-colorscheme monokai
-
 " remove any trailing whitespace that is in the file
 autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
 
@@ -210,3 +225,13 @@ set nohidden
 "autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 let @j = 'cc[ENG-####](https://lobsters.atlassian.net/browse/ENG-####)jk'
+
+function! ProseMode()
+  call goyo#execute(0, [])
+  set spell noci nosi noai nolist noshowmode noshowcmd
+  set complete+=s
+  set bg=light
+endfunction
+
+command! ProseMode call ProseMode()
+nmap \p :ProseMode<CR>
