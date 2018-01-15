@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-DOTFILES_DIR=~/.dotfiles
+DOTFILES_DIR=~/dotfiles
 OLD_DIR=$DOTFILES_DIR/old
 
 # Ensure we're in the dotfiles directory
@@ -9,14 +9,14 @@ cd $DOTFILES_DIR
 
 # List of dotfiles for home directory
 FILES=''
-FILES+=' .aliases'
-FILES+=' .bash_profile'
-FILES+=' .gitconfig'
-FILES+=' .inputrc'
-FILES+=' .psqlrc'
-FILES+=' .tmux.conf'
-FILES+=' .vimrc'
-FILES+=' .zshrc'
+FILES+=' aliases'
+FILES+=' bash_profile'
+FILES+=' gitconfig'
+FILES+=' inputrc'
+FILES+=' psqlrc'
+FILES+=' tmux.conf'
+FILES+=' vimrc'
+FILES+=' zshrc'
 
 # List of programs to install with brew
 BREW=''
@@ -73,11 +73,11 @@ if [ ! -e $OLD_DIR ]; then
 fi
 
 for f in $FILES; do
-  if check_file ~/$f; then
-    echo "Copying old ~/$f into $OLD_DIR..."
-    cp ~/$f $OLD_DIR/$f
+  if check_file ~/.$f; then
+    echo "Copying old ~/.$f into $OLD_DIR..."
+    cp ~/.$f $OLD_DIR/.$f
   fi
-  ln -sf $DOTFILES_DIR/$f ~/$f
+  ln -sf $DOTFILES_DIR/dot/$f ~/.$f
 done
 echo "...done"
 echo
