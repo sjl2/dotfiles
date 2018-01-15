@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-DOTFILES_DIR=~/.dotfiles
+DOTFILES_DIR=~/dotfiles
 OLD_DIR=$DOTFILES_DIR/old
 
 # Ensure we're in the dotfiles directory
@@ -9,18 +9,21 @@ cd $DOTFILES_DIR
 
 # List of dotfiles for home directory
 FILES=''
-FILES+=' .aliases'
-FILES+=' .bash_profile'
-FILES+=' .gitconfig'
-FILES+=' .inputrc'
-FILES+=' .psqlrc'
-FILES+=' .tmux.conf'
-FILES+=' .vimrc'
-FILES+=' .zshrc'
+FILES+=' aliases'
+FILES+=' bash_profile'
+FILES+=' gitconfig'
+FILES+=' inputrc'
+FILES+=' psqlrc'
+FILES+=' tmux.conf'
+FILES+=' vimrc'
+FILES+=' zshrc'
 
 # List of programs to install with brew
 BREW=''
+BREW+=' ag'
 BREW+=' cmake'
+BREW+=' fzf'
+BREW+=' nodenv'
 BREW+=' reattach-to-user-namespace'
 BREW+=' tmux'
 BREW+=' tree'
@@ -32,7 +35,7 @@ BREW+=' zsh-syntax-highlighting'
 
 # Checks if a file exists but isn't a symlink
 function check_file () {
-  [ -f $1 ] && [ ! -h $1 ]
+  [ -f "$1" ] && [ ! -h "$1" ]
 }
 
 echo
@@ -53,25 +56,8 @@ if [[ $OSTYPE == darwin* ]]; then
     echo "Installing rvm..."
     \curl -sSL https://get.rvm.io | bash
   fi
-fi
-echo "...done"
-echo
-
-echo
-echo "Installing nvm..."
-if [ ! -d ~/.nvm ]; then
-  curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.314/install.sh | bash
-  export NVM_DIR="$HOME/.nvm"
-  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-fi
-echo "...done"
-echo
-
-echo
-echo "Installing avn..."
-if [ ! -d ~/.avn ]; then
-  npm install -g avn avn-nvm
-  avn setup
+  echo "Installing fzf extensions..."
+  /usr/local/opt/fzf/install
 fi
 echo "...done"
 echo
@@ -87,20 +73,20 @@ if [ ! -e $OLD_DIR ]; then
 fi
 
 for f in $FILES; do
-  if check_file ~/$f; then
-    echo "Copying old ~/$f into $OLD_DIR..."
-    cp ~/$f $OLD_DIR/$f
+  if check_file ~/.$f; then
+    echo "Copying old ~/.$f into $OLD_DIR..."
+    cp ~/.$f $OLD_DIR/.$f
   fi
-  ln -sf $DOTFILES_DIR/$f ~/$f
+  ln -sf $DOTFILES_DIR/dot/$f ~/.$f
 done
 echo "...done"
 echo
 
 echo
 echo "Setting up vim..."
-if [ ! -d ~/.vim/bundle/Vundle.vim ]; then
+if [ ! -d ~/.vim/bundle ]; then
   mkdir -p ~/.vim/bundle
-  git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+  mkdir -p ~/.vim/undo
   git clone https://github.com/Valloric/YouCompleteMe.git ~/.vim/bundle/YouCompleteMe
   cd ~/.vim/bundle/YouCompleteMe
   git submodule update --init --recursive
@@ -125,7 +111,7 @@ echo
 echo
 echo "Setting up iTerm2..."
 mkdir -p ~/Library/Application\ Support/iTerm2/DynamicProfiles
-if check_file ~/Library/Application\ Support/iTerm2/DynamicProfiles/iterm.json; then
+if check_file '~/Library/Application Support/iTerm2/DynamicProfiles/iterm.json'; then
   echo "Copying old iterm.json into $OLD_DIR..."
   cp ~/Library/Application\ Support/iTerm2/DynamicProfiles/iterm.json $OLD_DIR
 fi
