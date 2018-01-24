@@ -58,6 +58,9 @@ export GREP_OPTIONS
 # nodenv
 eval "$(nodenv init -)"
 
+# pyenv
+eval "$(pyenv init -)"
+
 # X11
 export PATH="$PATH:/opt/X11/bin"
 
