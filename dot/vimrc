@@ -228,3 +228,6 @@ endfunction
 
 command! ProseMode call ProseMode()
 nmap \p :ProseMode<CR>
+
+set exrc
+set secure
