@@ -111,3 +111,6 @@ if _has fzf && _has ag; then
   --color info:254,prompt:37,spinner:108,pointer:235,marker:235
   '
 fi
+
+. $HOME/.asdf/asdf.sh
+. $HOME/.asdf/completions/asdf.bash
