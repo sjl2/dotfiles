@@ -183,13 +183,6 @@ autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
 " lists invisible chars
 "set list listchars=tab:❘-,trail:·,extends:»,precedes:«,nbsp:×
 
-" ctrl p settings
-" Ignore some folders and files for CtrlP indexing
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\.git$\|\.yardoc\|node_modules\|tmp\|coverage$',
-  \ 'file': '\.so$\|\.dat$|\.DS_Store$'
-  \ }
-
 " tabular key bindings
 nmap <leader>t= :Tabularize /=<CR>
 vmap <leader>t= :Tabularize /=<CR>
