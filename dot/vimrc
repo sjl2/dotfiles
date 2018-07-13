@@ -1,18 +1,6 @@
 set nocompatible " be iMproved, required
 filetype off     " required
 
-function! BuildYCM(info)
-  if a:info.status == 'installed' || a:info.force
-    !./install.sh
-  endif
-endfunction
-
-function! Installjshint(info)
-  if a:info.status == 'installed' || a:info.force
-    !npm install -g jshint
-  endif
-endfunction
-
 call plug#begin('~/.vim/plugged')
 
 " Aesthetic
@@ -39,7 +27,7 @@ Plug 'bogado/file-line'
 " Code Shortcuts
 Plug 'godlygeek/tabular'
 Plug 'scrooloose/nerdcommenter'
-Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
+Plug 'Valloric/YouCompleteMe'
 
 "" Syntax Plugs
 Plug 'sheerun/vim-polyglot'
