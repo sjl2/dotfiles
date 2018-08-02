@@ -162,6 +162,9 @@ set ttyfast
 set backspace=indent,eol,start
 set laststatus=2
 
+" vim-gitgutter
+set updatetime=400
+
 " escape search highliting by hitting return
 nnoremap <CR> :noh<CR><CR>
 
