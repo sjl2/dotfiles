@@ -72,7 +72,7 @@ nnoremap j gj
 " Have left and right movement wrap lines
 set whichwrap+=<,>,h,l,[,]
 
-" Move around more quickly
+" Jump to beginning and end of lines
 nnoremap H 0
 vnoremap H 0
 nnoremap L $
