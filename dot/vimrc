@@ -56,8 +56,8 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 set number
 set ruler
 set colorcolumn=121
-set autoread                          " auto read edits from outside
-set clipboard=unnamed                 " Use OS clipboard
+set autoread             " auto read edits from outside
+set clipboard=unnamed    " necessary for using OS clipboard
 set undodir=~/.vim/undo/
 set undofile
 
