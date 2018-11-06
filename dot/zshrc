@@ -61,6 +61,9 @@ eval "$(nodenv init -)"
 # pyenv
 eval "$(pyenv init -)"
 
+# goenv
+eval "$(goenv init -)"
+
 # X11
 export PATH="$PATH:/opt/X11/bin"
 
