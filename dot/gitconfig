@@ -11,6 +11,7 @@
   recommit = commit -c ORIG_HEAD      ; Commit current changes as recently removed head
   prune = remote prune origin         ; Prune local branches to match origin
   show-files = show --name-only       ; Show names of files updated in last commit
+  wip = commit -m "wip"               ; Save currently staged work as WIP
 [color "diff"]
   meta = magenta
 [core]
