@@ -83,12 +83,7 @@ export GOPATH=$(go env GOPATH)
 
 # Add Yarn to Path
 export PATH="$PATH:`yarn global bin`"
-
-# Format History Timestamps
-HIST_FORMAT="'%Y-%m-%d %T:'$(echo -e '\t')"
-
-# Alias History to use above formatting
-alias history="fc -t "$HIST_FORMAT" -il 1"
+export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"
 
 # tabtab source for serverless package
 # uninstall by removing these lines or running `tabtab uninstall serverless`
