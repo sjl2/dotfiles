@@ -1,3 +1,4 @@
+# Git Aliases
 alias ga="git add"
 alias gb="git branch"
 alias gc="git commit"
@@ -12,5 +13,18 @@ alias grom="git rebase origin/master"
 alias gs="git status"
 alias gsh="git show"
 alias gpr="git prune"
+
+# List Aliases
 alias ls="ls -G"
+
+# Vim Aliases
 alias pvim="vim -u NONE"
+
+# History Aliases
+HIST_FORMAT="'%Y-%m-%d %T:'$(echo -e '\t')"
+alias history="fc -t "$HIST_FORMAT" -il 1"
+
+# Terraform Aliases
+alias tfg="terraform get"
+alias tfp="terraform plan | scenery"
+alias tfa="terraform apply"
