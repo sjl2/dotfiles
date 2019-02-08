@@ -14,6 +14,10 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ryanoasis/vim-devicons'
 Plug 'junegunn/goyo.vim'
 
+" Copy/Paste
+Plug 'tpope/vim-repeat'
+Plug 'svermeulen/vim-easyclip'
+
 " File Shortcuts
 Plug 'mileszs/ack.vim'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
@@ -52,6 +56,11 @@ nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 
 " Source .vimrc
 nnoremap <leader>sv :source $MYVIMRC<cr>
+
+"" Copy/Paste (svermeulen/vim-easyclip)
+" remap add mark
+nnoremap gm m
+nmap M <Plug>MoveMotionEndOfLinePlug
 
 " basic config
 set number
