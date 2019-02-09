@@ -14,8 +14,10 @@ alias gs="git status"
 alias gsh="git show"
 alias gpr="git prune"
 
-# List Aliases
+# Shell Aliases
 alias ls="ls -G"
+alias psh="pushd"
+alias pop="popd"
 
 # Vim Aliases
 alias pvim="vim -u NONE"
