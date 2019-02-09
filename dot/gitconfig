@@ -12,6 +12,15 @@
   prune = remote prune origin         ; Prune local branches to match origin
   show-files = show --name-only       ; Show names of files updated in last commit
   wip = commit -m "wip"               ; Save currently staged work as WIP
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+  interactive = auto
+  ui = true
+  pager = true
+[pager]
+  branch = false ;
 [color "diff"]
   meta = magenta
 [core]
