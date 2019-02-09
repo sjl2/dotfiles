@@ -3,22 +3,25 @@ filetype off     " required
 
 call plug#begin('~/.vim/plugged')
 
-" Aesthetic
+"" Aesthetic
 Plug 'crusoexia/vim-monokai'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ryanoasis/vim-devicons'
 Plug 'junegunn/goyo.vim'
 
-" Copy/Paste
+"" Git Tools
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'airblade/vim-gitgutter'
+Plug 'hotwatermorning/auto-git-diff'
+
+"" Copy/Paste
 Plug 'tpope/vim-repeat'
 Plug 'svermeulen/vim-easyclip'
 
-" File Shortcuts
+"" File Shortcuts
 Plug 'mileszs/ack.vim'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -28,7 +31,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'bogado/file-line'
 
-" Code Shortcuts
+"" Code Shortcuts
 Plug 'godlygeek/tabular'
 Plug 'scrooloose/nerdcommenter'
 Plug 'Valloric/YouCompleteMe'
@@ -40,7 +43,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'jelera/vim-javascript-syntax'
 Plug 'w0rp/ale'
 
-" testing
+"" Testing
 Plug 'janko-m/vim-test'
 Plug 'benmills/vimux'
 
