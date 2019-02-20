@@ -54,6 +54,18 @@ syntax on
 colorscheme monokai
 set t_Co=256
 
+"" Go Syntax Highlighting
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_types = 1
+
+let g:go_auto_sameids = 1
+
 " Open .vimrc
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 
@@ -106,15 +118,24 @@ nnoremap <Leader>b :Buffers<CR>
 nnoremap <C-p> :Files<CR>
 "nnoremap <Leader>r :Tags<CR>
 
-" tabs/indents
-set shiftwidth=2                      " Default tab settings
+"" Tabs/Indents
+" Default
+set shiftwidth=2   "
 set softtabstop=2
-filetype plugin on                    " required
-filetype indent on                    " change indent based on file type
-set expandtab
-set smarttab
+filetype plugin on " required
+filetype indent on " change indent based on file type
 set autoindent
 set smarttab
+set expandtab
+
+" Go Tabs
+au FileType go set noexpandtab
+au FileType go set shiftwidth=4
+au FileType go set softtabstop=4
+au FileType go set tabstop=4
+
+" Makefile Tabs
+autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0
 
 " change split opening to below and right
 set splitbelow
