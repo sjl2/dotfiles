@@ -22,6 +22,10 @@ alias pop="popd"
 # Vim Aliases
 alias pvim="vim -u NONE"
 
+# Neovim
+alias pnv="nvim -u NONE"
+alias nv="nvim"
+
 # History Aliases
 HIST_FORMAT="'%Y-%m-%d %T:'$(echo -e '\t')"
 alias history="fc -t "$HIST_FORMAT" -il 1"

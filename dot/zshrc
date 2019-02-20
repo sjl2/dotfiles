@@ -120,3 +120,7 @@ fi
 . $HOME/.asdf/completions/asdf.bash
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# tabtab source for slss package
+# uninstall by removing these lines or running `tabtab uninstall slss`
+[[ -f /Users/stewart/.nodenv/versions/8.10.0/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/stewart/.nodenv/versions/8.10.0/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh
