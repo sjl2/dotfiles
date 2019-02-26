@@ -33,6 +33,9 @@ source $ZSH/oh-my-zsh.sh
 source ~/.aliases
 source ~/.lob_aliases
 
+# Bash Functions
+source ~/.helpers.sh
+
 # Default Editor
 export EDITOR=vim
 
