@@ -47,6 +47,9 @@ Plug 'w0rp/ale'
 Plug 'janko-m/vim-test'
 Plug 'benmills/vimux'
 
+"" GoLang
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
 call plug#end()
 
 " crusoexia/vim-monokai Theme
@@ -65,6 +68,24 @@ let g:go_highlight_structs = 1
 let g:go_highlight_types = 1
 
 let g:go_auto_sameids = 1
+
+"" vim-go Shortcuts
+let g:go_echo_command_info = 0
+
+autocmd FileType go nmap <leader>b  <Plug>(go-build)
+autocmd FileType go nmap <leader>r  <Plug>(go-run)
+
+au FileType go nnoremap <Leader>gd <Plug>(go-def)
+au FileType go nmap <Leader>gp <Plug>(go-def-pop)
+
+au FileType go nnoremap <Leader>gv <Plug>(go-doc-vertical)
+" or open in a browser...
+au FileType go nnoremap <Leader>gb <Plug>(go-doc-browser)
+
+au FileType go nnoremap <Leader>s <Plug>(go-implements)
+au FileType go nnoremap <Leader>i <Plug>(go-info)
+au FileType go nnoremap <Leader>gl <Plug>(go-metalinter)
+au FileType go nnoremap <Leader>gc <Plug>(go-callers)
 
 " Open .vimrc
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
