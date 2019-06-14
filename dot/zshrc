@@ -86,6 +86,10 @@ export ERL_AFLAGS="-kernel shell_history enabled"
 export PATH=$PATH:$(go env GOPATH)/bin
 export GOPATH=$(go env GOPATH)
 
+# Add Go binaries to Path
+export PATH=“$GOROOT/bin:$PATH”
+export PATH=“$GOPATH/bin:$PATH”
+
 # Add Yarn to Path
 export PATH="$PATH:`yarn global bin`"
 export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"
