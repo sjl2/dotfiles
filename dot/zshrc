@@ -36,6 +36,7 @@ source ~/.lob_aliases
 
 # Bash Functions
 source ~/.helpers.sh
+source ~/.goto.sh
 
 # Default Editor
 export EDITOR=vim
