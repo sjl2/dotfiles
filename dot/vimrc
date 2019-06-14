@@ -71,6 +71,7 @@ let g:go_auto_sameids = 1
 
 "" vim-go Shortcuts
 let g:go_echo_command_info = 0
+let g:go_fmt_command = "goimports"
 
 autocmd FileType go nmap <leader>b  <Plug>(go-build)
 autocmd FileType go nmap <leader>r  <Plug>(go-run)
