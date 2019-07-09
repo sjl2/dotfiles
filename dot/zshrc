@@ -67,7 +67,14 @@ eval "$(nodenv init -)"
 eval "$(pyenv init -)"
 
 # goenv
+export GOENV_DISABLE_GOROOT=1
+export GOENV_DISABLE_GOPATH=1
+export GOENV_ROOT="$HOME/.goenv"
+export PATH="$GOENV_ROOT/bin:$PATH"
+export GOPATH="/Users/stewart/lob/go"
 eval "$(goenv init -)"
+export PATH="$GOROOT/bin:$PATH"
+export PATH="$GOPATH/bin:$PATH"
 
 # X11
 export PATH="$PATH:/opt/X11/bin"
@@ -82,13 +89,6 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # Enable Elixir/Erlang REPL History
 export ERL_AFLAGS="-kernel shell_history enabled"
 
-# Add Go to Path
-export PATH=$PATH:$(go env GOPATH)/bin
-export GOPATH=$(go env GOPATH)
-
-# Add Go binaries to Path
-export PATH=“$GOROOT/bin:$PATH”
-export PATH=“$GOPATH/bin:$PATH”
 
 # Add Yarn to Path
 export PATH="$PATH:`yarn global bin`"
