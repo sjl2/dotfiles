@@ -32,6 +32,7 @@ Plug 'tpope/vim-rhubarb'
 Plug 'bogado/file-line'
 
 "" Code Shortcuts
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'godlygeek/tabular'
 Plug 'scrooloose/nerdcommenter'
 Plug 'Valloric/YouCompleteMe'
