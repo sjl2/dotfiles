@@ -58,6 +58,9 @@ syntax on
 colorscheme monokai
 set t_Co=256
 
+" JSON Comment Highlighting
+autocmd FileType json syntax match Comment +\/\/.\+$+
+
 "" Go Syntax Highlighting
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_extra_types = 1
