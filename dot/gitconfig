@@ -11,6 +11,7 @@
   recommit = commit -c ORIG_HEAD      ; Commit current changes as recently removed head
   show-files = show --name-only       ; Show names of files updated in last commit
   uncommit = reset --soft HEAD^       ; Move last commit's changes to the staging area
+  unstage = reset HEAD .              ; Unstage all files
   wip = commit -m "wip"               ; Save currently staged work as WIP
 [color]
   diff = auto
