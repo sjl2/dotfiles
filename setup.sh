@@ -11,6 +11,7 @@ cd $DOTFILES_DIR
 FILES=''
 FILES+=' aliases'
 FILES+=' bash_profile'
+FILES+=' config'
 FILES+=' helpers.sh'
 FILES+=' gitconfig'
 FILES+=' inputrc'
