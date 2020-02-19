@@ -64,7 +64,14 @@ export GREP_OPTIONS
 eval "$(nodenv init -)"
 
 # pyenv
-eval "$(pyenv init -)"
+# https://github.com/pyenv/pyenv#basic-github-checkout
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+export PYTHON_CONFIGURE_OPTS="--enable-framework"
+
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
 
 # goenv
 export GOENV_DISABLE_GOROOT=1
@@ -131,3 +138,5 @@ fi
 # uninstall by removing these lines or running `tabtab uninstall slss`
 [[ -f /Users/stewart/.nodenv/versions/8.10.0/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/stewart/.nodenv/versions/8.10.0/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh
 export PATH="/usr/local/opt/swagger-codegen@2/bin:$PATH"
+
+export PATH="/usr/local/opt/redis@3.2/bin:$PATH"
