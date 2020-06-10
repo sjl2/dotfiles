@@ -39,7 +39,7 @@ source ~/.helpers.sh
 source ~/.goto.sh
 
 # Default Editor
-export EDITOR=vim
+export EDITOR=nvim
 
 # grep
 GREP_OPTIONS=""
