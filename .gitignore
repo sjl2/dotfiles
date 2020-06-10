@@ -1,4 +1,6 @@
 .DS_Store
 old
 dot/config/**
+!dot/config/nvim
 !dot/config/nvim/*
+!dot/config/nvim/**
