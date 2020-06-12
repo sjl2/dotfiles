@@ -132,9 +132,6 @@ if _has fzf && _has ag; then
   '
 fi
 
-. $HOME/.asdf/asdf.sh
-. $HOME/.asdf/completions/asdf.bash
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # tabtab source for slss package
