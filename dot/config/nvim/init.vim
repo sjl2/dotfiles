@@ -55,7 +55,6 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 call plug#end()
 
 tnoremap <Esc> <C-\><C-n>
-source ~/.vimrc
 
 " Open init.vim
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
