@@ -11,6 +11,8 @@ cd $DOTFILES_DIR
 FILES=''
 FILES+=' aliases'
 FILES+=' bash_profile'
+FILES+=' config'
+FILES+=' helpers.sh'
 FILES+=' gitconfig'
 FILES+=' inputrc'
 FILES+=' psqlrc'
@@ -23,13 +25,19 @@ BREW=''
 BREW+=' ag'
 BREW+=' cmake'
 BREW+=' fzf'
+BREW+=' nvim'
+BREW+=' go'
+BREW+=' goenv'
+BREW+=' pyenv'
 BREW+=' nodenv'
+BREW+=' nodenv/nodenv/nodenv-default-packages'
 BREW+=' reattach-to-user-namespace'
 BREW+=' tmux'
 BREW+=' tree'
 BREW+=' vim'
 BREW+=' wget'
 BREW+=' zsh'
+BREW+=' zsh-autosuggestions'
 BREW+=' zsh-completions'
 BREW+=' zsh-syntax-highlighting'
 
@@ -47,6 +55,7 @@ if [[ $OSTYPE == darwin* ]]; then
   fi
   echo "Installing$BREW..."
   brew install $BREW 2> /dev/null
+  brew cask install shiftit 2> /dev/null
   if [ ! -d ~/.oh-my-zsh ]; then
     echo "Installing Oh My Zsh..."
     curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
@@ -99,6 +108,7 @@ echo
 
 echo
 echo "Setting up zsh..."
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 mkdir -p ~/.oh-my-zsh/custom/themes
 if check_file ~/.oh-my-zsh/custom/themes/robin.zsh-theme; then
   echo "Copying old robin.zsh-theme into $OLD_DIR..."

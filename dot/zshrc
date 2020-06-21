@@ -16,7 +16,8 @@ _append_to_path() {
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="af-magic"
+ZSH_THEME="robin"
+# I like gozilla.
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -33,8 +34,12 @@ source $ZSH/oh-my-zsh.sh
 source ~/.aliases
 source ~/.lob_aliases
 
+# Bash Functions
+source ~/.helpers.sh
+source ~/.goto.sh
+
 # Default Editor
-export EDITOR=vim
+export EDITOR=nvim
 
 # grep
 GREP_OPTIONS=""
@@ -59,10 +64,24 @@ export GREP_OPTIONS
 eval "$(nodenv init -)"
 
 # pyenv
-eval "$(pyenv init -)"
+# https://github.com/pyenv/pyenv#basic-github-checkout
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+export PYTHON_CONFIGURE_OPTS="--enable-framework"
+
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
 
 # goenv
+export GOENV_DISABLE_GOROOT=1
+export GOENV_DISABLE_GOPATH=1
+export GOENV_ROOT="$HOME/.goenv"
+export PATH="$GOENV_ROOT/bin:$PATH"
+export GOPATH="/Users/stewart/lob/go"
 eval "$(goenv init -)"
+export PATH="$GOROOT/bin:$PATH"
+export PATH="$GOPATH/bin:$PATH"
 
 # X11
 export PATH="$PATH:/opt/X11/bin"
@@ -77,9 +96,6 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # Enable Elixir/Erlang REPL History
 export ERL_AFLAGS="-kernel shell_history enabled"
 
-# Add Go to Path
-export PATH=$PATH:$(go env GOPATH)/bin
-export GOPATH=$(go env GOPATH)
 
 # Add Yarn to Path
 export PATH="$PATH:`yarn global bin`"
@@ -116,7 +132,11 @@ if _has fzf && _has ag; then
   '
 fi
 
-. $HOME/.asdf/asdf.sh
-. $HOME/.asdf/completions/asdf.bash
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# tabtab source for slss package
+# uninstall by removing these lines or running `tabtab uninstall slss`
+[[ -f /Users/stewart/.nodenv/versions/8.10.0/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/stewart/.nodenv/versions/8.10.0/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh
+export PATH="/usr/local/opt/swagger-codegen@2/bin:$PATH"
+
+export PATH="/usr/local/opt/redis@3.2/bin:$PATH"

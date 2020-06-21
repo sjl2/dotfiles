@@ -7,11 +7,21 @@
   default = simple
 [alias]
   fixup = commit --amend -c head      ; Append changes to last commit
-  uncommit = reset --soft HEAD^       ; Move last commit's changes to the staging area
-  recommit = commit -c ORIG_HEAD      ; Commit current changes as recently removed head
   prune = remote prune origin         ; Prune local branches to match origin
+  recommit = commit -c ORIG_HEAD      ; Commit current changes as recently removed head
   show-files = show --name-only       ; Show names of files updated in last commit
+  uncommit = reset --soft HEAD^       ; Move last commit's changes to the staging area
+  unstage = reset HEAD .              ; Unstage all files
   wip = commit -m "wip"               ; Save currently staged work as WIP
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+  interactive = auto
+  ui = true
+  pager = true
+[pager]
+  branch = false ;
 [color "diff"]
   meta = magenta
 [core]
