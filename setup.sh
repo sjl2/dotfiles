@@ -20,6 +20,8 @@ FILES+=' tmux.conf'
 FILES+=' vimrc'
 FILES+=' zshrc'
 
+ITERM_FILE='iterm2-profile-sjl2.json'
+
 # List of programs to install with brew
 BREW=''
 BREW+=' ag'
@@ -32,10 +34,12 @@ BREW+=' pyenv'
 BREW+=' nodenv'
 BREW+=' nodenv/nodenv/nodenv-default-packages'
 BREW+=' reattach-to-user-namespace'
+BREW+=' ripgrep'
 BREW+=' tmux'
 BREW+=' tree'
 BREW+=' vim'
 BREW+=' wget'
+BREW+=' yarn'
 BREW+=' zsh'
 BREW+=' zsh-autosuggestions'
 BREW+=' zsh-completions'
@@ -51,7 +55,7 @@ echo "Setting up dependencies..."
 if [[ $OSTYPE == darwin* ]]; then
   if ! type brew > /dev/null 2>&1; then
     echo "Installing brew..."
-    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
   fi
   echo "Installing$BREW..."
   brew install $BREW 2> /dev/null
@@ -91,6 +95,7 @@ done
 echo "...done"
 echo
 
+# TODO: replace with neovim
 echo
 echo "Setting up vim..."
 if [ ! -d ~/.vim/bundle ]; then
@@ -126,7 +131,7 @@ if check_file '~/Library/Application Support/iTerm2/DynamicProfiles/iterm.json';
   cp ~/Library/Application\ Support/iTerm2/DynamicProfiles/iterm.json $OLD_DIR
 fi
 # This must be a hard link because iTerm can't read symlinks
-ln -f $DOTFILES_DIR/iterm.json ~/Library/Application\ Support/iTerm2/DynamicProfiles
+ln -f $DOTFILES_DIR/$ITERM_FILE ~/Library/Application\ Support/iTerm2/DynamicProfiles
 echo "=== Make sure you set this profile as the default one in iTerm2 ==="
 echo "...done"
 echo
