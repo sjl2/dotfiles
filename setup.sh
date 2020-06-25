@@ -1,26 +1,9 @@
 #!/bin/bash
 
-# Variables
-DOTFILES_DIR=~/dotfiles
-OLD_DIR=$DOTFILES_DIR/old
+# TODO: install xcode and git
+# TODO: seek inspiration from https://github.com/monfresh/laptop
 
-# Ensure we're in the dotfiles directory
-cd $DOTFILES_DIR
-
-# List of dotfiles for home directory
-FILES=''
-FILES+=' aliases'
-FILES+=' bash_profile'
-FILES+=' config'
-FILES+=' helpers.sh'
-FILES+=' gitconfig'
-FILES+=' inputrc'
-FILES+=' psqlrc'
-FILES+=' tmux.conf'
-FILES+=' vimrc'
-FILES+=' zshrc'
-
-# List of apps to install
+# CLI Apps to install (e.g. brew install <app>)
 APPS=''
 APPS+=' ag'
 APPS+=' cmake'
@@ -43,21 +26,60 @@ APPS+=' zsh-autosuggestions'
 APPS+=' zsh-completions'
 APPS+=' zsh-syntax-highlighting'
 
+# Apps to install with GUIs & Licenses (e.g. requires brew cask)
+APPS_GUI=''
+APPS_GUI+=' docker'
+APPS_GUI+=' google-chrome'
+APPS_GUI+=' insomnia'
+APPS_GUI+=' iterm2'
+APPS_GUI+=' shiftit'
+
+# Variables
+DOTFILES_DIR=~/dotfiles
+OLD_DIR=$DOTFILES_DIR/old
+
+# Ensure we're in the dotfiles directory
+cd $DOTFILES_DIR
+
+# List of dotfiles for home directory
+DOTFILES=''
+DOTFILES+=' aliases'
+DOTFILES+=' bash_profile'
+DOTFILES+=' config'
+DOTFILES+=' helpers.sh'
+DOTFILES+=' gitconfig'
+DOTFILES+=' inputrc'
+DOTFILES+=' psqlrc'
+DOTFILES+=' tmux.conf'
+DOTFILES+=' vimrc'
+DOTFILES+=' zshrc'
+
 # Checks if a file exists but isn't a symlink
 function check_file () {
   [ -f "$1" ] && [ ! -h "$1" ]
 }
 
-echo
-echo "Setting up dependencies..."
-if [[ $OSTYPE == darwin* ]]; then
+function install_brew () {
   if ! type brew > /dev/null 2>&1; then
     echo "Installing brew..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
   fi
+}
+
+function install_apps () {
   echo "Installing$APPS..."
   brew install $APPS 2> /dev/null
-  brew cask install shiftit 2> /dev/null
+
+  echo "Installing$APPS_GUI..."
+  brew cask install $APPS_GUI 2> /dev/null
+}
+
+echo
+echo "Setting up dependencies..."
+if [[ $OSTYPE == darwin* ]]; then
+  install_brew()
+  install_apps()
+
   if [ ! -d ~/.oh-my-zsh ]; then
     echo "Installing Oh My Zsh..."
     curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
@@ -83,7 +105,7 @@ if [ ! -e $OLD_DIR ]; then
   mkdir $OLD_DIR
 fi
 
-for f in $FILES; do
+for f in $DOTFILES; do
   if check_file ~/.$f; then
     echo "Copying old ~/.$f into $OLD_DIR..."
     cp ~/.$f $OLD_DIR/.$f
