@@ -1,15 +1,32 @@
-let g:python_host_prog = '/Users/stewart/.pyenv/shims/python'"
+" https://neovim.io/doc/user/provider.html
+let g:loaded_python_provider = 0 " disable python 2
+let g:python_host_prog = '/Users/stewart/.pyenv/shims/python' " use pyenv shim
 
 call plug#begin()
 
+"" File System Navigation
+Plug 'scrooloose/nerdtree'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " nerdtree icons
+
+Plug 'mileszs/ack.vim'
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+
+" Unix Shell Commands
+Plug 'tpope/vim-eunuch'
+
+" Open files to specfic lines
+Plug 'bogado/file-line' " nv index.html:20
+
 "" Aesthetic
 Plug 'crusoexia/vim-monokai'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'scrooloose/nerdtree'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ryanoasis/vim-devicons'
-Plug 'junegunn/goyo.vim'
+
+"" Status Bar
+Plug 'vim-airline/vim-airline' " bottom status bar
+Plug 'vim-airline/vim-airline-themes' " visual themes
 
 "" Git Tools
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -20,47 +37,45 @@ Plug 'hotwatermorning/auto-git-diff'
 Plug 'tpope/vim-repeat'
 Plug 'svermeulen/vim-easyclip'
 
-"" File Shortcuts
-Plug 'mileszs/ack.vim'
-Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-Plug 'tpope/vim-eunuch'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rhubarb'
-Plug 'bogado/file-line'
-
 "" Code Shortcuts
+
+" VSCode like Plugins
+" TODO: configure coc-settings.json via
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'godlygeek/tabular'
+
 Plug 'scrooloose/nerdcommenter'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
-Plug 'justinmk/vim-sneak'
 
-"" Syntax Plugs
+"" Better Character Movement
+Plug 'justinmk/vim-sneak'
+let g:sneak#s_next = 1
+let g:sneak#use_ic_scs = 1
+
+"" Syntax Highlighting
 Plug 'sheerun/vim-polyglot'
-Plug 'pangloss/vim-javascript'
-Plug 'jelera/vim-javascript-syntax'
-Plug 'w0rp/ale'
-Plug 'sbdchd/neoformat'
-Plug 'neomake/neomake'
+
+"" Auto-formatter
+Plug 'sbdchd/neoformat' " TODO: set-up as needed
 
 "" Testing
-Plug 'janko-m/vim-test'
-Plug 'benmills/vimux'
+Plug 'janko-m/vim-test' " edit -> test shortcuts
+Plug 'benmills/vimux' " runs test in tmux pane
 
 "" GoLang
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 call plug#end()
 
-tnoremap <Esc> <C-\><C-n>
-
 " Open init.vim
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 
 " Source init.vim
 nnoremap <leader>sv :source $MYVIMRC<cr>
+
+""" My Theme
+syntax on
+colorscheme monokai " crusoexia/vim-monokai Theme
+set t_Co=256 " https://vim.fandom.com/wiki/256_colors_in_vim
 
 " basic config
 set number
@@ -70,27 +85,27 @@ set clipboard=unnamed    " necessary for using OS clipboard
 set undodir=~/.vim/undo/
 set undofile
 
-" line
+" line formats
 set textwidth=120
 set formatoptions-=t
 set colorcolumn=121
-
-
-"""" Visuals
-" crusoexia/vim-monokai Theme
-syntax on
-colorscheme monokai
-set t_Co=256
-
-" JSON Comment Highlighting
-autocmd FileType json syntax match Comment +\/\/.\+$+
 
 " fonts and icons
 set encoding=utf-8
 set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Plus\ Nerd\ File\ Types:h11
 
-"""" Movement
+" window options
+set showmode
+set showcmd
+set ruler
+set ttyfast
+set backspace=indent,eol,start
+set laststatus=2
 
+tnoremap <Esc> <C-\><C-n>
+
+
+"""" Movement
 " jk for leaving normal mode
 inoremap jk <Esc>
 inoremap kj <Esc>
@@ -123,9 +138,34 @@ nnoremap <Leader>b :Buffers<CR>
 nnoremap <C-p> :Files<CR>
 "nnoremap <Leader>r :Tags<CR>
 
+" 2-character Sneak (default)
+nmap S <Plug>Sneak_S
+nmap s <Plug>Sneak_s
+omap S <Plug>Sneak_S
+omap s <Plug>Sneak_s
+xmap S <Plug>Sneak_S
+xmap s <Plug>Sneak_s
+
+" replace 'f' with 1-char Sneak
+nmap F <Plug>Sneak_F
+nmap f <Plug>Sneak_f
+omap F <Plug>Sneak_F
+omap f <Plug>Sneak_f
+xmap F <Plug>Sneak_F
+xmap f <Plug>Sneak_f
+
+" replace 't' with 1-char Sneak
+nmap T <Plug>Sneak_T
+nmap t <Plug>Sneak_t
+omap T <Plug>Sneak_T
+omap t <Plug>Sneak_t
+xmap T <Plug>Sneak_T
+xmap t <Plug>Sneak_t
+""""
+
 "" Tabs/Indents
 " Default
-set shiftwidth=2   "
+set shiftwidth=2
 set softtabstop=2
 filetype plugin on " required
 filetype indent on " change indent based on file type
@@ -152,17 +192,11 @@ set nowritebackup
 set noswapfile
 
 " vim-test
-let test#strategy = 'vimux'
+let test#strategy = 'vimux' " plug above; opens test in tmux pane
 
 nmap <silent> <leader>t :TestNearest<CR>
 nmap <silent> <leader>f :TestFile<CR>
 nmap <silent> <leader>s :TestSuite<CR>
-
-" nerdtree
-"autocmd FileType nerdtree setlocal nolist
-
-" auto start NERDTree
-"autocmd vimenter * NERDTree
 
 " Airline Config
 let g:airline_powerline_fonts = 1
@@ -186,43 +220,6 @@ set smartcase
 set hlsearch
 highlight ColorColumn ctermbg=2
 
-"""" justinmk/vim-sneak
-let g:sneak#s_next = 1
-let g:sneak#use_ic_scs = 1
-
-" 2-character Sneak (default)
-nmap S <Plug>Sneak_S
-nmap s <Plug>Sneak_s
-omap S <Plug>Sneak_S
-omap s <Plug>Sneak_s
-xmap S <Plug>Sneak_S
-xmap s <Plug>Sneak_s
-
-" replace 'f' with 1-char Sneak
-nmap F <Plug>Sneak_F
-nmap f <Plug>Sneak_f
-omap F <Plug>Sneak_F
-omap f <Plug>Sneak_f
-xmap F <Plug>Sneak_F
-xmap f <Plug>Sneak_f
-
-" replace 't' with 1-char Sneak
-nmap T <Plug>Sneak_T
-nmap t <Plug>Sneak_t
-omap T <Plug>Sneak_T
-omap t <Plug>Sneak_t
-xmap T <Plug>Sneak_T
-xmap t <Plug>Sneak_t
-""""
-
-" window options
-set showmode
-set showcmd
-set ruler
-set ttyfast
-set backspace=indent,eol,start
-set laststatus=2
-
 " vim-gitgutter
 set updatetime=200
 
@@ -235,19 +232,8 @@ autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
 " lists invisible chars
 "set list listchars=tab:❘-,trail:·,extends:»,precedes:«,nbsp:×
 
-" tabular key bindings
-nmap <leader>t= :Tabularize /=<CR>
-vmap <leader>t= :Tabularize /=<CR>
-nmap <leader>t: :Tabularize /:\zs<CR>
-vmap <leader>t: :Tabularize /:\zs<CR>
-nmap <leader>t, :Tabularize /,\zs<CR>
-vmap <leader>t, :Tabularize /,\zs<CR>
-
 " multiple cursor settings
 let g:multi_cursor_exit_from_visual_mode=0
-
-" fix aligned chains in javascript
-let g:javascript_opfirst=1
 
 " keep at least 5 lines below the cursor
 set scrolloff=5
@@ -258,14 +244,14 @@ set mouse=a
 " close buffer when tab is closed
 set nohidden
 
-" close vim if all tabs are closed
-"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-
 " Vim Test Options
 let g:test#runner_commands = ['Exunit', 'Lab', 'Minitest', 'Mocha']
 
-let @j = 'cc[ENG-####](https://lobsters.atlassian.net/browse/ENG-####)jk'
+" deprecated (lob specific)
+" let @j = 'cc[ENG-####](https://lobsters.atlassian.net/browse/ENG-####)jk' " copy in md hyperlink for jira tickets
 
+""" Distraction free writing
+" https://gist.github.com/jeffcasavant/c32978fbc23522286821df5f35e659fa#file-vimrc-L109
 function! ProseMode()
   call goyo#execute(0, [])
   set spell noci nosi noai nolist noshowmode noshowcmd
@@ -279,8 +265,9 @@ nmap \p :ProseMode<CR>
 set exrc
 set secure
 
-" https://github.com/neomake/neomake#setup
-call neomake#configure#automake('rw', 1000)
+""" justinmk/vim-sneak' settings
+let g:sneak#s_next = 1
+let g:sneak#use_ic_scs = 1
 
 "" Copy/Paste (svermeulen/vim-easyclip)
 " remap add mark
