@@ -7,12 +7,18 @@ call plug#begin()
 "" File System Navigation
 Plug 'scrooloose/nerdtree'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " nerdtree icons
-
-Plug 'mileszs/ack.vim'
-Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+Plug 'Xuyuanp/nerdtree-git-plugin' " file git status
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+
+"" Git Tools
+Plug 'airblade/vim-gitgutter' " git status for individual lines & hunks
+Plug 'hotwatermorning/auto-git-diff' " displays commit diffs for interative rebases
+
+"" Status Bar
+Plug 'vim-airline/vim-airline' " bottom status bar
+Plug 'vim-airline/vim-airline-themes' " visual themes
 
 " Unix Shell Commands
 Plug 'tpope/vim-eunuch'
@@ -24,15 +30,6 @@ Plug 'bogado/file-line' " nv index.html:20
 Plug 'crusoexia/vim-monokai'
 Plug 'ryanoasis/vim-devicons'
 
-"" Status Bar
-Plug 'vim-airline/vim-airline' " bottom status bar
-Plug 'vim-airline/vim-airline-themes' " visual themes
-
-"" Git Tools
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'airblade/vim-gitgutter'
-Plug 'hotwatermorning/auto-git-diff'
-
 "" Copy/Paste
 Plug 'tpope/vim-repeat'
 Plug 'svermeulen/vim-easyclip'
@@ -40,7 +37,7 @@ Plug 'svermeulen/vim-easyclip'
 "" Code Shortcuts
 
 " VSCode like Plugins
-" TODO: configure coc-settings.json via
+" TODO: configure coc-settings.json
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'scrooloose/nerdcommenter'
@@ -58,11 +55,11 @@ Plug 'sheerun/vim-polyglot'
 Plug 'sbdchd/neoformat' " TODO: set-up as needed
 
 "" Testing
-Plug 'janko-m/vim-test' " edit -> test shortcuts
+Plug 'janko-m/vim-test' " edit -> test shortcuts TODO: fix for lab
 Plug 'benmills/vimux' " runs test in tmux pane
 
 "" GoLang
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' } " TODO: replace with coc?
 
 call plug#end()
 
@@ -133,10 +130,12 @@ noremap <C-l> <C-W>l
 nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :bprevious<CR>
 
-" fzf Buffers
-nnoremap <Leader>b :Buffers<CR>
+""" fzf Mappings
+" find/switch files
 nnoremap <C-p> :Files<CR>
-"nnoremap <Leader>r :Tags<CR>
+" find/switch buffers
+nnoremap <Leader>b :Buffers<CR>
+"nnoremap <Leader>r :Tags<CR> TODO: use tags?
 
 " 2-character Sneak (default)
 nmap S <Plug>Sneak_S
