@@ -20,8 +20,6 @@ FILES+=' tmux.conf'
 FILES+=' vimrc'
 FILES+=' zshrc'
 
-ITERM_FILE='iterm2-profile-sjl2.json'
-
 # List of programs to install with brew
 BREW=''
 BREW+=' ag'
@@ -130,8 +128,10 @@ if check_file '~/Library/Application Support/iTerm2/DynamicProfiles/iterm.json';
   echo "Copying old iterm.json into $OLD_DIR..."
   cp ~/Library/Application\ Support/iTerm2/DynamicProfiles/iterm.json $OLD_DIR
 fi
+
+### Load Iterm Profiles
 # This must be a hard link because iTerm can't read symlinks
-ln -f $DOTFILES_DIR/$ITERM_FILE ~/Library/Application\ Support/iTerm2/DynamicProfiles
-echo "=== Make sure you set this profile as the default one in iTerm2 ==="
+ln -f $DOTFILES_DIR/iterm/profiles.json ~/Library/Application\ Support/iTerm2/DynamicProfiles
+echo "=== Make sure you set default profile in iTerm2 ==="
 echo "...done"
 echo
