@@ -20,28 +20,28 @@ FILES+=' tmux.conf'
 FILES+=' vimrc'
 FILES+=' zshrc'
 
-# List of programs to install with brew
-BREW=''
-BREW+=' ag'
-BREW+=' cmake'
-BREW+=' fzf'
-BREW+=' nvim'
-BREW+=' go'
-BREW+=' goenv'
-BREW+=' pyenv'
-BREW+=' nodenv'
-BREW+=' nodenv/nodenv/nodenv-default-packages'
-BREW+=' reattach-to-user-namespace'
-BREW+=' ripgrep'
-BREW+=' tmux'
-BREW+=' tree'
-BREW+=' vim'
-BREW+=' wget'
-BREW+=' yarn'
-BREW+=' zsh'
-BREW+=' zsh-autosuggestions'
-BREW+=' zsh-completions'
-BREW+=' zsh-syntax-highlighting'
+# List of apps to install
+APPS=''
+APPS+=' ag'
+APPS+=' cmake'
+APPS+=' fzf'
+APPS+=' nvim'
+APPS+=' go'
+APPS+=' goenv'
+APPS+=' pyenv'
+APPS+=' nodenv'
+APPS+=' nodenv/nodenv/nodenv-default-packages'
+APPS+=' reattach-to-user-namespace'
+APPS+=' ripgrep'
+APPS+=' tmux'
+APPS+=' tree'
+APPS+=' vim'
+APPS+=' wget'
+APPS+=' yarn'
+APPS+=' zsh'
+APPS+=' zsh-autosuggestions'
+APPS+=' zsh-completions'
+APPS+=' zsh-syntax-highlighting'
 
 # Checks if a file exists but isn't a symlink
 function check_file () {
@@ -55,8 +55,8 @@ if [[ $OSTYPE == darwin* ]]; then
     echo "Installing brew..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
   fi
-  echo "Installing$BREW..."
-  brew install $BREW 2> /dev/null
+  echo "Installing$APPS..."
+  brew install $APPS 2> /dev/null
   brew cask install shiftit 2> /dev/null
   if [ ! -d ~/.oh-my-zsh ]; then
     echo "Installing Oh My Zsh..."
