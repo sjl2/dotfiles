@@ -32,15 +32,18 @@ source $ZSH/oh-my-zsh.sh
 
 # Aliases
 source ~/.aliases
-source ~/.lob_aliases
+
+# Private rc file for non-checked-in rc scripts
+source ~/.secretrc
 
 # Bash Functions
 source ~/.helpers.sh
 source ~/.goto.sh
 
-# Default Editor
+# Default Editor to neovim
 export EDITOR=nvim
 
+# TODO: apply these options to ripgrep
 # grep
 GREP_OPTIONS=""
 GREP_OPTIONS+=" --color=auto"
