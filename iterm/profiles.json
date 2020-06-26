@@ -329,7 +329,7 @@
   "Horizontal Spacing" : 1,
   "Option Key Sends" : 0,
   "Blink Allowed" : false,
-  "Minimum Contrast" : 0,
+  "Minimum Contrast" : 0.30229048295454547,
   "Ansi 15 Color" : {
     "Green Component" : 0.72941176470588232,
     "Blue Component" : 0.72941176470588232,
