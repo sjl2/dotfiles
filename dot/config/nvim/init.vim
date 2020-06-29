@@ -41,7 +41,6 @@ Plug 'svermeulen/vim-easyclip'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'scrooloose/nerdcommenter'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 
 "" Better Character Movement
 Plug 'justinmk/vim-sneak'
@@ -200,13 +199,6 @@ nmap <silent> <leader>s :TestSuite<CR>
 " Airline Config
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
-
-" YouCompleteMe Config
-if !exists('g:ycm_semantic_triggers')
-  let g:ycm_semantic_triggers = {}
-endif
-let g:ycm_semantic_triggers['typescript'] = ['.']
-let g:ycm_autoclose_preview_window_after_completion = 1
 
 " leave showtabline as default (for now)
 set showtabline=1
