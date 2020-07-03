@@ -37,7 +37,23 @@ Plug 'svermeulen/vim-easyclip'
 "" Code Shortcuts
 
 " VSCode like Plugins
-" TODO: configure coc-settings.json
+let g:coc_global_extensions = [
+\ 'coc-css',
+\ 'coc-html',
+\ 'coc-json',
+\ 'coc-python',
+\ 'coc-tsserver',
+\ 'coc-yaml',
+\ ]
+
+if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
+  let g:coc_global_extensions += ['coc-prettier']
+endif
+
+if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
+  let g:coc_global_extensions += ['coc-eslint']
+endif
+
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'scrooloose/nerdcommenter'
