@@ -12,6 +12,7 @@ APPS+=' nvim'
 APPS+=' goenv'
 APPS+=' jq'
 APPS+=' postgres'
+APPS+=' pipenv'
 APPS+=' pyenv'
 APPS+=' nodenv'
 APPS+=' nodenv/nodenv/nodenv-default-packages'
@@ -34,6 +35,7 @@ APPS_GUI+=' google-chrome'
 APPS_GUI+=' insomnia'
 APPS_GUI+=' iterm2'
 APPS_GUI+=' shiftit'
+APPS_GUI+=' slack'
 
 # Variables
 DOTFILES_DIR=~/dotfiles
