@@ -143,3 +143,8 @@ fi
 export PATH="/usr/local/opt/swagger-codegen@2/bin:$PATH"
 
 export PATH="/usr/local/opt/redis@3.2/bin:$PATH"
+
+# pip cannot find mac's ssl library
+# https://www.peterbe.com/plog/ld-library-not-found-for-lssl-mysqlclient-python-macos
+export LDFLAGS="-L/usr/local/opt/openssl/lib"
+export CPPFLAGS="-I/usr/local/opt/openssl/include"
