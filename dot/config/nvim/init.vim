@@ -8,7 +8,6 @@ call plug#begin()
 Plug 'scrooloose/nerdtree'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " nerdtree icons
 Plug 'Xuyuanp/nerdtree-git-plugin' " file git status
-
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
@@ -313,3 +312,6 @@ au FileType go nnoremap <Leader>s <Plug>(go-implements)
 au FileType go nnoremap <Leader>i <Plug>(go-info)
 au FileType go nnoremap <Leader>gl <Plug>(go-metalinter)
 au FileType go nnoremap <Leader>gc <Plug>(go-callers)
+
+" Add Prettier Format Command
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
