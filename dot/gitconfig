@@ -4,7 +4,7 @@
 [credential]
   helper = osxkeychain
 [push]
-  default = simple
+  default = current
 [alias]
   fixup = commit --amend -c head      ; Append changes to last commit
   prune = remote prune origin         ; Prune local branches to match origin
