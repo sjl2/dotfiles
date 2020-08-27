@@ -315,3 +315,13 @@ au FileType go nnoremap <Leader>gc <Plug>(go-callers)
 
 " Add Prettier Format Command
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
+
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+" source: https://github.com/neoclide/coc.nvim#example-vim-configuration
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
