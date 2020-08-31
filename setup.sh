@@ -161,3 +161,20 @@ ln -f $DOTFILES_DIR/iterm/profiles.json "~/Library/Application Support/iTerm2/Dy
 echo "=== Make sure you set default profile in iTerm2 ==="
 echo "...done"
 echo
+
+echo
+echo "Setting up VS Code..."
+mkdir -p ~/Library/Application\ Support/Code/User
+if check_file '~/Library/Application Support/Code/User/settings.json'; then
+  echo "Copying old settings.json into $OLD_DIR..."
+  cp ~/Library/Application\ Support/Code/User/settings.json $OLD_DIR/vscode-settings.json
+fi
+if check_file '~/Library/Application Support/Code/User/keybindings.json'; then
+  echo "Copying old settings.json into $OLD_DIR..."
+  cp ~/Library/Application\ Support/Code/User/settings.json $OLD_DIR/vscode-settings.json
+fi
+ln -sf $DOTFILES_DIR/code/settings.json ~/Library/Application\ Support/Code/User/settings.json
+ln -sf $DOTFILES_DIR/code/keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json
+echo "...done"
+echo
+
