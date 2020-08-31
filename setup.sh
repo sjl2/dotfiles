@@ -81,8 +81,8 @@ function install_apps () {
 echo
 echo "Setting up dependencies..."
 if [[ $OSTYPE == darwin* ]]; then
-  install_brew()
-  install_apps()
+  install_brew
+  install_apps
 
   if [ ! -d ~/.oh-my-zsh ]; then
     echo "Installing Oh My Zsh..."
