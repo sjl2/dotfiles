@@ -150,14 +150,14 @@ echo
 echo
 echo "Setting up iTerm2..."
 mkdir -p ~/Library/Application\ Support/iTerm2/DynamicProfiles
-if check_file '~/Library/Application Support/iTerm2/DynamicProfiles/iterm.json'; then
-  echo "Copying old iterm.json into $OLD_DIR..."
-  cp ~/Library/Application\ Support/iTerm2/DynamicProfiles/iterm.json $OLD_DIR
+if check_file '~/Library/Application Support/iTerm2/DynamicProfiles/profiles.json'; then
+  echo "Copying old iTerm2 profiles.json into $OLD_DIR..."
+  cp ~/Library/Application\ Support/iTerm2/DynamicProfiles/profiles.json $OLD_DIR
 fi
 
 ### Load Iterm Profiles
 # This must be a hard link because iTerm can't read symlinks
-ln -f $DOTFILES_DIR/iterm/profiles.json ~/Library/Application\ Support/iTerm2/DynamicProfiles
+ln -f $DOTFILES_DIR/iterm/profiles.json "~/Library/Application Support/iTerm2/DynamicProfiles"
 echo "=== Make sure you set default profile in iTerm2 ==="
 echo "...done"
 echo
