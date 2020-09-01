@@ -36,6 +36,7 @@ APPS_GUI+=' insomnia'
 APPS_GUI+=' iterm2'
 APPS_GUI+=' shiftit'
 APPS_GUI+=' slack'
+APPS_GUI+=' visual-studio-code'
 
 # Variables
 DOTFILES_DIR=~/dotfiles
@@ -177,4 +178,3 @@ ln -sf $DOTFILES_DIR/code/settings.json ~/Library/Application\ Support/Code/User
 ln -sf $DOTFILES_DIR/code/keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json
 echo "...done"
 echo
-
