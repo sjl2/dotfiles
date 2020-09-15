@@ -33,5 +33,8 @@
   "prettier.prettierPath": ".prettierrc",
   "prettier.requireConfig": true,
   "editor.quickSuggestionsDelay": 5,
-  "python.formatting.blackArgs": ["--line-length 120"],
+  "python.formatting.blackArgs": [
+    "--line-length 120"
+  ],
+  "window.zoomLevel": 0,
 }
