@@ -30,11 +30,21 @@
   "workbench.statusBar.visible": true,
   "editor.minimap.enabled": false,
   "prettier.packageManager": "yarn",
-  "prettier.prettierPath": ".prettierrc",
   "prettier.requireConfig": true,
   "editor.quickSuggestionsDelay": 5,
   "python.formatting.blackArgs": [
     "--line-length 120"
   ],
   "window.zoomLevel": 0,
+"vim.enableNeovim": true,
+  "editor.formatOnSave": true,
+  "python.formatting.provider": "black",
+  "files.insertFinalNewline": true,
+  "prettier.printWidth": 120,
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+},
+"jupyter.sendSelectionToInteractiveWindow": false,
+"python.languageServer": "Pylance",
+"editor.formatOnPaste": true,
 }
