@@ -38,3 +38,6 @@ alias tfi="terraform init"
 alias tfg="terraform get"
 alias tfp="terraform plan | scenery"
 alias tfa="terraform apply"
+
+# Source
+alias sall="source ~/.aliases ~/.bashrc ~/.bash_profile ~/.zshrc ~/.inputrc ~/.helpers.sh ~/.goto.sh"
