@@ -73,7 +73,7 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 export PYTHON_CONFIGURE_OPTS="--enable-framework"
 
 if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
+  eval "$(pyenv init --path)"
 fi
 
 # goenv
@@ -148,3 +148,5 @@ export PATH="/usr/local/opt/redis@3.2/bin:$PATH"
 # https://www.peterbe.com/plog/ld-library-not-found-for-lssl-mysqlclient-python-macos
 export LDFLAGS="-L/usr/local/opt/openssl/lib"
 export CPPFLAGS="-I/usr/local/opt/openssl/include"
+
+export PATH="$HOME/.poetry/bin:$PATH"
