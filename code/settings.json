@@ -35,7 +35,6 @@
   "python.formatting.blackArgs": [
     "--line-length 120"
   ],
-  "window.zoomLevel": 0,
 "vim.enableNeovim": true,
   "editor.formatOnSave": true,
   "python.formatting.provider": "black",
@@ -47,4 +46,30 @@
 "jupyter.sendSelectionToInteractiveWindow": false,
 "python.languageServer": "Pylance",
 "editor.formatOnPaste": true,
+"[typescript]": {
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
+},
+"python.analysis.typeCheckingMode": "basic",
+"python.analysis.extraPaths": [
+  "backend",
+  "users",
+  "projects"
+],
+"workbench.editorAssociations": {
+  "*.ipynb": "jupyter-notebook"
+},
+"[markdown]": {
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
+},
+"[javascript]": {
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
+},
+"[terraform]": {
+  "editor.defaultFormatter": "hashicorp.terraform"
+},
+"notebook.cellToolbarLocation": {
+  "default": "right",
+  "jupyter-notebook": "left"
+},
+"window.zoomLevel": 1,
 }
