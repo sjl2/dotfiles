@@ -1,5 +1,44 @@
 #!/bin/bash
 
+# TODO: install xcode and git
+# TODO: seek inspiration from https://github.com/monfresh/laptop
+
+# CLI Apps to install (e.g. brew install <app>)
+APPS=''
+APPS+=' ag'
+APPS+=' cmake'
+APPS+=' fzf'
+APPS+=' nvim'
+APPS+=' goenv'
+APPS+=' jq'
+APPS+=' postgres'
+APPS+=' pipenv'
+APPS+=' pyenv'
+APPS+=' nodenv'
+APPS+=' nodenv/nodenv/nodenv-default-packages'
+APPS+=' openssl'
+APPS+=' reattach-to-user-namespace'
+APPS+=' ripgrep'
+APPS+=' tmux'
+APPS+=' tree'
+APPS+=' vim'
+APPS+=' wget'
+APPS+=' yarn'
+APPS+=' zsh'
+APPS+=' zsh-autosuggestions'
+APPS+=' zsh-completions'
+APPS+=' zsh-syntax-highlighting'
+
+# Apps to install with GUIs & Licenses (e.g. requires brew cask)
+APPS_GUI=''
+APPS_GUI+=' docker'
+APPS_GUI+=' google-chrome'
+APPS_GUI+=' insomnia'
+APPS_GUI+=' iterm2'
+APPS_GUI+=' shiftit'
+APPS_GUI+=' slack'
+APPS_GUI+=' visual-studio-code'
+
 # Variables
 DOTFILES_DIR=~/dotfiles
 OLD_DIR=$DOTFILES_DIR/old
@@ -8,54 +47,45 @@ OLD_DIR=$DOTFILES_DIR/old
 cd $DOTFILES_DIR
 
 # List of dotfiles for home directory
-FILES=''
-FILES+=' aliases'
-FILES+=' bash_profile'
-FILES+=' config'
-FILES+=' helpers.sh'
-FILES+=' gitconfig'
-FILES+=' inputrc'
-FILES+=' psqlrc'
-FILES+=' tmux.conf'
-FILES+=' vimrc'
-FILES+=' zshrc'
-
-# List of programs to install with brew
-BREW=''
-BREW+=' ag'
-BREW+=' cmake'
-BREW+=' fzf'
-BREW+=' nvim'
-BREW+=' go'
-BREW+=' goenv'
-BREW+=' pyenv'
-BREW+=' nodenv'
-BREW+=' nodenv/nodenv/nodenv-default-packages'
-BREW+=' reattach-to-user-namespace'
-BREW+=' tmux'
-BREW+=' tree'
-BREW+=' vim'
-BREW+=' wget'
-BREW+=' zsh'
-BREW+=' zsh-autosuggestions'
-BREW+=' zsh-completions'
-BREW+=' zsh-syntax-highlighting'
+DOTFILES=''
+DOTFILES+=' aliases'
+DOTFILES+=' bash_profile'
+DOTFILES+=' config'
+DOTFILES+=' helpers.sh'
+DOTFILES+=' gitconfig'
+DOTFILES+=' goto.sh'
+DOTFILES+=' inputrc'
+DOTFILES+=' psqlrc'
+DOTFILES+=' tmux.conf'
+DOTFILES+=' vimrc'
+DOTFILES+=' zshrc'
 
 # Checks if a file exists but isn't a symlink
 function check_file () {
   [ -f "$1" ] && [ ! -h "$1" ]
 }
 
+function install_brew () {
+  if ! type brew > /dev/null 2>&1; then
+    echo "Installing brew..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+  fi
+}
+
+function install_apps () {
+  echo "Installing$APPS..."
+  brew install $APPS 2> /dev/null
+
+  echo "Installing$APPS_GUI..."
+  brew cask install $APPS_GUI 2> /dev/null
+}
+
 echo
 echo "Setting up dependencies..."
 if [[ $OSTYPE == darwin* ]]; then
-  if ! type brew > /dev/null 2>&1; then
-    echo "Installing brew..."
-    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-  fi
-  echo "Installing$BREW..."
-  brew install $BREW 2> /dev/null
-  brew cask install shiftit 2> /dev/null
+  install_brew
+  install_apps
+
   if [ ! -d ~/.oh-my-zsh ]; then
     echo "Installing Oh My Zsh..."
     curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
@@ -81,7 +111,7 @@ if [ ! -e $OLD_DIR ]; then
   mkdir $OLD_DIR
 fi
 
-for f in $FILES; do
+for f in $DOTFILES; do
   if check_file ~/.$f; then
     echo "Copying old ~/.$f into $OLD_DIR..."
     cp ~/.$f $OLD_DIR/.$f
@@ -91,6 +121,7 @@ done
 echo "...done"
 echo
 
+# TODO: replace with neovim
 echo
 echo "Setting up vim..."
 if [ ! -d ~/.vim/bundle ]; then
@@ -121,12 +152,30 @@ echo
 echo
 echo "Setting up iTerm2..."
 mkdir -p ~/Library/Application\ Support/iTerm2/DynamicProfiles
-if check_file '~/Library/Application Support/iTerm2/DynamicProfiles/iterm.json'; then
-  echo "Copying old iterm.json into $OLD_DIR..."
-  cp ~/Library/Application\ Support/iTerm2/DynamicProfiles/iterm.json $OLD_DIR
+if check_file '~/Library/Application Support/iTerm2/DynamicProfiles/profiles.json'; then
+  echo "Copying old iTerm2 profiles.json into $OLD_DIR..."
+  cp ~/Library/Application\ Support/iTerm2/DynamicProfiles/profiles.json $OLD_DIR
 fi
+
+### Load Iterm Profiles
 # This must be a hard link because iTerm can't read symlinks
-ln -f $DOTFILES_DIR/iterm.json ~/Library/Application\ Support/iTerm2/DynamicProfiles
-echo "=== Make sure you set this profile as the default one in iTerm2 ==="
+ln -f $DOTFILES_DIR/iterm/profiles.json "~/Library/Application Support/iTerm2/DynamicProfiles"
+echo "=== Make sure you set default profile in iTerm2 ==="
+echo "...done"
+echo
+
+echo
+echo "Setting up VS Code..."
+mkdir -p ~/Library/Application\ Support/Code/User
+if check_file '~/Library/Application Support/Code/User/settings.json'; then
+  echo "Copying old settings.json into $OLD_DIR..."
+  cp ~/Library/Application\ Support/Code/User/settings.json $OLD_DIR/vscode-settings.json
+fi
+if check_file '~/Library/Application Support/Code/User/keybindings.json'; then
+  echo "Copying old settings.json into $OLD_DIR..."
+  cp ~/Library/Application\ Support/Code/User/settings.json $OLD_DIR/vscode-settings.json
+fi
+ln -sf $DOTFILES_DIR/code/settings.json ~/Library/Application\ Support/Code/User/settings.json
+ln -sf $DOTFILES_DIR/code/keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json
 echo "...done"
 echo

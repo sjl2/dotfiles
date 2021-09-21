@@ -32,15 +32,18 @@ source $ZSH/oh-my-zsh.sh
 
 # Aliases
 source ~/.aliases
-source ~/.lob_aliases
+
+# Private rc file for non-checked-in rc scripts
+source ~/.secretrc
 
 # Bash Functions
 source ~/.helpers.sh
 source ~/.goto.sh
 
-# Default Editor
+# Default Editor to neovim
 export EDITOR=nvim
 
+# TODO: apply these options to ripgrep
 # grep
 GREP_OPTIONS=""
 GREP_OPTIONS+=" --color=auto"
@@ -60,6 +63,19 @@ GREP_OPTIONS+=" --exclude=./public/main.min.css"
 GREP_OPTIONS+=" --exclude=./public/bundle.js"
 export GREP_OPTIONS
 
+# openssl
+export PATH="$(brew --prefix openssl@1.1)/bin:$PATH"
+export LDFLAGS="-L$(brew --prefix openssl@1.1)/lib"
+export CPPFLAGS="-I$(brew --prefix openssl@1.1)/include"
+export PKG_CONFIG_PATH="$(brew --prefix openssl@1.1)/lib/pkgconfig"
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+
+# rbenv
+export PATH="$HOME/.rbenv/bin:$PATH"
+if which rbenv > /dev/null; then
+  eval "$(rbenv init -)";
+fi
+
 # nodenv
 eval "$(nodenv init -)"
 
@@ -70,7 +86,7 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 export PYTHON_CONFIGURE_OPTS="--enable-framework"
 
 if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
+  eval "$(pyenv init --path)"
 fi
 
 # goenv
@@ -140,3 +156,10 @@ fi
 export PATH="/usr/local/opt/swagger-codegen@2/bin:$PATH"
 
 export PATH="/usr/local/opt/redis@3.2/bin:$PATH"
+
+# pip cannot find mac's ssl library
+# https://www.peterbe.com/plog/ld-library-not-found-for-lssl-mysqlclient-python-macos
+export LDFLAGS="-L/usr/local/opt/openssl/lib"
+export CPPFLAGS="-I/usr/local/opt/openssl/include"
+
+export PATH="$HOME/.poetry/bin:$PATH"

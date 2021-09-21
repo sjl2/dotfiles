@@ -9,7 +9,9 @@ alias gls="git log --stat"
 alias gpsh="git push"
 alias gpll="git pull"
 alias gr="git rebase"
-alias grom="git rebase origin/master"
+alias gmod="git merge origin/develop"
+alias grom="git rebase origin/develop"
+alias grod="git rebase origin/develop"
 alias gs="git status"
 alias gsh="git show"
 alias gpr="git prune"
@@ -31,7 +33,11 @@ HIST_FORMAT="'%Y-%m-%d %T:'$(echo -e '\t')"
 alias history="fc -t "$HIST_FORMAT" -il 1"
 
 # Terraform Aliases
+alias tf="terraform"
 alias tfi="terraform init"
 alias tfg="terraform get"
 alias tfp="terraform plan | scenery"
 alias tfa="terraform apply"
+
+# Source
+alias sall="source ~/.aliases ~/.bashrc ~/.bash_profile ~/.zshrc ~/.inputrc ~/.helpers.sh ~/.goto.sh"

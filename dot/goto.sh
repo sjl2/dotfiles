@@ -1,12 +1,14 @@
 #!/bin/bash
 
+# TODO: configure dev root with env variable
+
 # paths in which to find projects or directories
 # top path wins
 goto-refresh-search-paths () {
   setopt nullglob
   goto_search_paths=(
     $GOPATH/src/*/*
-    ~/lob
+    ~/dev
   )
   unsetopt nullglob
 }
