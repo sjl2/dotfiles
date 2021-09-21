@@ -91,10 +91,6 @@ if [[ $OSTYPE == darwin* ]]; then
     curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
     chsh -s /bin/zsh
   fi
-  if [ ! -d ~/.rvm ]; then
-    echo "Installing rvm..."
-    \curl -sSL https://get.rvm.io | bash
-  fi
   echo "Installing fzf extensions..."
   /usr/local/opt/fzf/install
 fi
