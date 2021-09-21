@@ -63,6 +63,19 @@ GREP_OPTIONS+=" --exclude=./public/main.min.css"
 GREP_OPTIONS+=" --exclude=./public/bundle.js"
 export GREP_OPTIONS
 
+# openssl
+export PATH="$(brew --prefix openssl@1.1)/bin:$PATH"
+export LDFLAGS="-L$(brew --prefix openssl@1.1)/lib"
+export CPPFLAGS="-I$(brew --prefix openssl@1.1)/include"
+export PKG_CONFIG_PATH="$(brew --prefix openssl@1.1)/lib/pkgconfig"
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+
+# rbenv
+export PATH="$HOME/.rbenv/bin:$PATH"
+if which rbenv > /dev/null; then
+  eval "$(rbenv init -)";
+fi
+
 # nodenv
 eval "$(nodenv init -)"
 
