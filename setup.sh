@@ -117,18 +117,18 @@ done
 echo "...done"
 echo
 
-# TODO: replace with neovim
 echo
-echo "Setting up vim..."
+echo "Setting up vim & neovim..."
 if [ ! -d ~/.vim/bundle ]; then
   mkdir -p ~/.vim/bundle
   mkdir -p ~/.vim/undo
-  git clone https://github.com/Valloric/YouCompleteMe.git ~/.vim/bundle/YouCompleteMe
-  cd ~/.vim/bundle/YouCompleteMe
-  git submodule update --init --recursive
-  ./install.sh
   cd $DOTFILES_DIR
+  mkdir -p ~/.config/nvim
+  ln -s $DOTFILES_DIR/dot/config/init.vim ~/.config/nvim/init.vim
+  ln -s $DOTFILES_DIR/dot/config/coc-settings.json ~/.config/nvim/init.json
   vim +PluginInstall +qall
+  # https://github.com/junegunn/vim-plug/issues/675#issuecomment-718089095
+  nvim --headless +PlugInstall +qall
 fi
 echo "...done"
 echo
@@ -169,9 +169,27 @@ if check_file '~/Library/Application Support/Code/User/settings.json'; then
 fi
 if check_file '~/Library/Application Support/Code/User/keybindings.json'; then
   echo "Copying old settings.json into $OLD_DIR..."
-  cp ~/Library/Application\ Support/Code/User/settings.json $OLD_DIR/vscode-settings.json
+  cp ~/Library/Application\ Support/Code/User/keybindings.json $OLD_DIR/vscode-keybindings.json
 fi
 ln -sf $DOTFILES_DIR/code/settings.json ~/Library/Application\ Support/Code/User/settings.json
 ln -sf $DOTFILES_DIR/code/keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json
+echo "...done"
+echo
+
+if [ -z "$(find ~/Library/Fonts -name '*Powerline*')" ]; then
+  echo
+  echo "Installing Powerline Fonts..."
+  git clone https://github.com/powerline/fonts.git --depth=1
+  cd fonts
+  ./install.sh
+  cd ..
+  rm -rf fonts
+  echo "...done"
+  echo
+fi
+
+echo
+echo "Enabling key repeats on Mac..."
+defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 echo "...done"
 echo
