@@ -127,6 +127,7 @@ if [ ! -d ~/.vim/bundle ]; then
   ln -s $DOTFILES_DIR/dot/config/init.vim ~/.config/nvim/init.vim
   ln -s $DOTFILES_DIR/dot/config/coc-settings.json ~/.config/nvim/init.json
   vim +PluginInstall +qall
+  curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   # https://github.com/junegunn/vim-plug/issues/675#issuecomment-718089095
   nvim --headless +PlugInstall +qall
 fi
