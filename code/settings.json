@@ -73,4 +73,11 @@
 },
 "window.zoomLevel": 1,
 "workbench.colorTheme": "Default Dark+",
+"github.copilot.editor.enableAutoCompletions": true,
+"ruby.specCommand": "doppler run -- bundle exec -- rspec",
+"[jsonc]": {
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
+},
+"githubPullRequests.terminalLinksHandler": "github",
+"makefile.configureOnOpen": true,
 }
