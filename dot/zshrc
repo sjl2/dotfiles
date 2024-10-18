@@ -79,6 +79,9 @@ fi
 # nodenv
 eval "$(nodenv init -)"
 
+# direnv
+eval "$(direnv hook zsh)"
+
 # pyenv
 # https://github.com/pyenv/pyenv#basic-github-checkout
 export PYENV_ROOT="$HOME/.pyenv"
