@@ -30,6 +30,8 @@ export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
 source $ZSH/oh-my-zsh.sh
 
+export PATH=/opt/homebrew/bin:/opt/homebrew/sbin:$PATH
+
 # Aliases
 source ~/.aliases
 
@@ -106,9 +108,6 @@ export PATH="$PATH:/opt/X11/bin"
 bindkey '^[OA' history-beginning-search-backward
 bindkey '^[OB' history-beginning-search-forward
 
-# zsh syntax highlighting
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
 # Enable Elixir/Erlang REPL History
 export ERL_AFLAGS="-kernel shell_history enabled"
 
@@ -163,3 +162,8 @@ export LDFLAGS="-L/usr/local/opt/openssl/lib"
 export CPPFLAGS="-I/usr/local/opt/openssl/include"
 
 export PATH="$HOME/.poetry/bin:$PATH"
+
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+export DISABLE_SPRING=true
+source /Users/sjl2/.config/op/plugins.sh
