@@ -8,13 +8,14 @@
 [branch]
   autosetupmerge = true
 [alias]
-  fixup = commit --amend -c head      ; Append changes to last commit
-  prune = remote prune origin         ; Prune local branches to match origin
-  recommit = commit -c ORIG_HEAD      ; Commit current changes as recently removed head
-  show-files = show --name-only       ; Show names of files updated in last commit
-  uncommit = reset --soft HEAD^       ; Move last commit's changes to the staging area
-  unstage = reset HEAD .              ; Unstage all files
-  wip = commit -m "wip"               ; Save currently staged work as WIP
+  fixup = commit --amend -c head                      ; Append changes to last commit
+  prune = remote prune origin                         ; Prune local branches to match origin
+  recommit = commit -c ORIG_HEAD                      ; Commit current changes as recently removed head
+  show-files = show --name-only                       ; Show names of files updated in last commit
+  uncommit = reset --soft HEAD^                       ; Move last commit's changes to the staging area
+  unstage = reset HEAD .                              ; Unstage all files
+  wip = commit -m "wip"                               ; Save currently staged work as WIP
+  pushf = push --force-with-lease --force-if-includes ; Only force pushes if safe with origin
 [color]
   diff = auto
   status = auto
