@@ -43,3 +43,6 @@ alias tfa="terraform apply"
 
 # Source
 alias sall="source ~/.aliases ~/.bashrc ~/.bash_profile ~/.zshrc ~/.inputrc ~/.helpers.sh ~/.goto.sh"
+
+# Cursor Personal
+alias cursor_personal='open -n "$HOME/Applications/Cursor Personal.app" --args --user-data-dir "$HOME/Library/Application Support/CursorPersonal"'
