@@ -66,11 +66,14 @@ GREP_OPTIONS+=" --exclude=./public/bundle.js"
 export GREP_OPTIONS
 
 # openssl
-export PATH="$(brew --prefix openssl@1.1)/bin:$PATH"
-export LDFLAGS="-L$(brew --prefix openssl@1.1)/lib"
-export CPPFLAGS="-I$(brew --prefix openssl@1.1)/include"
-export PKG_CONFIG_PATH="$(brew --prefix openssl@1.1)/lib/pkgconfig"
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+export PATH="$(brew --prefix openssl@3.5)/bin:$PATH"
+export LDFLAGS="-L$(brew --prefix openssl@3.5)/lib"
+export CPPFLAGS="-I$(brew --prefix openssl@3.5)/include"
+export PKG_CONFIG_PATH="$(brew --prefix openssl@3.5)/lib/pkgconfig"
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@3.5)"
+
+# postgres
+export PATH="$(brew --prefix postgresql@14)/bin:$PATH"
 
 # rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
@@ -114,7 +117,6 @@ export ERL_AFLAGS="-kernel shell_history enabled"
 
 # Add Yarn to Path
 export PATH="$PATH:`yarn global bin`"
-export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"
 
 # tabtab source for serverless package
 # uninstall by removing these lines or running `tabtab uninstall serverless`
@@ -156,14 +158,12 @@ export PATH="/usr/local/opt/swagger-codegen@2/bin:$PATH"
 
 export PATH="/usr/local/opt/redis@3.2/bin:$PATH"
 
-# pip cannot find mac's ssl library
-# https://www.peterbe.com/plog/ld-library-not-found-for-lssl-mysqlclient-python-macos
-export LDFLAGS="-L/usr/local/opt/openssl/lib"
-export CPPFLAGS="-I/usr/local/opt/openssl/include"
-
 export PATH="$HOME/.poetry/bin:$PATH"
 
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 export DISABLE_SPRING=true
 source /Users/sjl2/.config/op/plugins.sh
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+export PATH="$HOME/.local/bin:$PATH"
