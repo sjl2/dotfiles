@@ -1,0 +1,61 @@
+" Minimal vimrc — quick terminal edits only
+
+" jk/kj to escape insert mode
+inoremap jk <Esc>
+inoremap kj <Esc>
+
+" Basics
+syntax on
+set number
+set ruler
+set autoread
+set clipboard=unnamed
+set backspace=indent,eol,start
+set mouse=a
+set scrolloff=5
+
+" Persistent undo
+set undodir=~/.vim/undo/
+set undofile
+
+" Indentation (2 spaces default)
+set shiftwidth=2
+set softtabstop=2
+set expandtab
+set autoindent
+set smarttab
+filetype plugin indent on
+autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0
+
+" Search
+set incsearch
+set ignorecase
+set smartcase
+set hlsearch
+nnoremap <CR> :noh<CR><CR>
+
+" Splits
+set splitbelow
+set splitright
+noremap <C-j> <C-W>j
+noremap <C-k> <C-W>k
+noremap <C-h> <C-W>h
+noremap <C-l> <C-W>l
+
+" Wrapped line movement
+nnoremap k gk
+nnoremap j gj
+
+" H/L for line start/end
+nnoremap H 0
+vnoremap H 0
+nnoremap L $
+vnoremap L $
+
+" No backups
+set nobackup
+set nowritebackup
+set noswapfile
+
+" Strip trailing whitespace on save
+autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
