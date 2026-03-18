@@ -60,12 +60,7 @@ prompt_end() {
 
 # Date: timestamp
 prompt_date() {
-  prompt_segment black default "%(!.%{%F{yellow}%}.)%D{%FT%T%z}"
-}
-
-# Convox: rack
-prompt_rack() {
-  prompt_segment magenta black $([ -e ~/.convox/rack ] && convox switch || echo unknown)
+  prompt_segment black default "%(!.%{%F{yellow}%}.)%D{%Y-%m-%d %H:%M}"
 }
 
 # Git: branch/detached head, dirty status
