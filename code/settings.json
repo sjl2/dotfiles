@@ -1,5 +1,4 @@
 {
-  "vim.easymotion": true,
   "vim.incsearch": true,
   "vim.useSystemClipboard": true,
   "vim.useCtrlKeys": true,
@@ -9,6 +8,10 @@
     "<C-a>": false,
     "<C-f>": false
   },
+  "vim.insertModeKeyBindings": [
+    { "before": ["j", "k"], "after": ["<Esc>"] },
+    { "before": ["k", "j"], "after": ["<Esc>"] }
+  ],
   "vim.statusBarColorControl": false,
   "diffEditor.ignoreTrimWhitespace": false,
   "workbench.statusBar.visible": true,
@@ -19,13 +22,11 @@
   "python.formatting.blackArgs": [
     "--line-length 120"
   ],
-  "vim.enableNeovim": true,
   "editor.formatOnSave": true,
-  "python.formatting.provider": "black",
   "files.insertFinalNewline": true,
   "prettier.printWidth": 120,
   "[typescriptreact]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "python.languageServer": "Pylance",
   "editor.formatOnPaste": true,
@@ -62,13 +63,5 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "githubPullRequests.terminalLinksHandler": "github",
-  "makefile.configureOnOpen": true,
-  "vscode-neovim.compositeKeys": {
-    "jk": {
-      "command": "vscode-neovim.escape",
-    },
-    "kj": {
-      "command": "vscode-neovim.escape",
-    },
-  },
+  "makefile.configureOnOpen": true
 }
