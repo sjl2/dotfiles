@@ -5,11 +5,8 @@
 
 # CLI Apps to install (e.g. brew install <app>)
 APPS=''
-APPS+=' ag'
 APPS+=' cmake'
 APPS+=' fzf'
-APPS+=' nvim'
-APPS+=' goenv'
 APPS+=' jq'
 APPS+=' postgres'
 APPS+=' pipenv'
@@ -17,7 +14,6 @@ APPS+=' pyenv'
 APPS+=' nodenv'
 APPS+=' nodenv/nodenv/nodenv-default-packages'
 APPS+=' openssl'
-APPS+=' reattach-to-user-namespace'
 APPS+=' ripgrep'
 APPS+=' tmux'
 APPS+=' tree'
@@ -29,7 +25,7 @@ APPS+=' zsh-autosuggestions'
 APPS+=' zsh-completions'
 APPS+=' zsh-syntax-highlighting'
 
-# Apps to install with GUIs & Licenses (e.g. requires brew cask)
+# Apps to install with GUIs & Licenses
 APPS_GUI=''
 APPS_GUI+=' docker'
 APPS_GUI+=' google-chrome'
@@ -50,7 +46,6 @@ cd $DOTFILES_DIR
 DOTFILES=''
 DOTFILES+=' aliases'
 DOTFILES+=' bash_profile'
-DOTFILES+=' config'
 DOTFILES+=' helpers.sh'
 DOTFILES+=' gitconfig'
 DOTFILES+=' goto.sh'
@@ -77,7 +72,7 @@ function install_apps () {
   brew install $APPS 2> /dev/null
 
   echo "Installing$APPS_GUI..."
-  brew cask install $APPS_GUI 2> /dev/null
+  brew install --cask $APPS_GUI 2> /dev/null
 }
 
 echo
@@ -118,19 +113,8 @@ echo "...done"
 echo
 
 echo
-echo "Setting up vim & neovim..."
-if [ ! -d ~/.vim/bundle ]; then
-  mkdir -p ~/.vim/bundle
-  mkdir -p ~/.vim/undo
-  cd $DOTFILES_DIR
-  mkdir -p ~/.config/nvim
-  ln -s $DOTFILES_DIR/dot/config/init.vim ~/.config/nvim/init.vim
-  ln -s $DOTFILES_DIR/dot/config/coc-settings.json ~/.config/nvim/init.json
-  vim +PluginInstall +qall
-  curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  # https://github.com/junegunn/vim-plug/issues/675#issuecomment-718089095
-  nvim --headless +PlugInstall +qall
-fi
+echo "Setting up vim..."
+mkdir -p ~/.vim/undo
 echo "...done"
 echo
 
@@ -168,12 +152,7 @@ if check_file '~/Library/Application Support/Code/User/settings.json'; then
   echo "Copying old settings.json into $OLD_DIR..."
   cp ~/Library/Application\ Support/Code/User/settings.json $OLD_DIR/vscode-settings.json
 fi
-if check_file '~/Library/Application Support/Code/User/keybindings.json'; then
-  echo "Copying old settings.json into $OLD_DIR..."
-  cp ~/Library/Application\ Support/Code/User/keybindings.json $OLD_DIR/vscode-keybindings.json
-fi
 ln -sf $DOTFILES_DIR/code/settings.json ~/Library/Application\ Support/Code/User/settings.json
-ln -sf $DOTFILES_DIR/code/keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json
 echo "...done"
 echo
 
