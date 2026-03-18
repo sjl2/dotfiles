@@ -14,16 +14,11 @@ _append_to_path() {
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
 ZSH_THEME="robin"
-# I like gozilla.
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
+# Which plugins would you like to load?
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git extract zsh-autosuggestions)
+plugins=(git zsh-autosuggestions)
 
 # User configuration
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
@@ -42,28 +37,8 @@ source ~/.secretrc
 source ~/.helpers.sh
 source ~/.goto.sh
 
-# Default Editor to neovim
-export EDITOR=nvim
-
-# TODO: apply these options to ripgrep
-# grep
-GREP_OPTIONS=""
-GREP_OPTIONS+=" --color=auto"
-GREP_OPTIONS+=" --exclude-dir=.bzr"
-GREP_OPTIONS+=" --exclude-dir=CVS"
-GREP_OPTIONS+=" --exclude-dir=.git"
-GREP_OPTIONS+=" --exclude-dir=.hg"
-GREP_OPTIONS+=" --exclude-dir=.svn"
-GREP_OPTIONS+=" --exclude-dir=node_modules"
-GREP_OPTIONS+=" --exclude-dir=coverage"
-GREP_OPTIONS+=" --exclude-dir=dist"
-GREP_OPTIONS+=" --exclude-dir=vendor"
-GREP_OPTIONS+=" --exclude=./newrelic_agent.log"
-GREP_OPTIONS+=" --exclude=./npm-shrinkwrap.json"
-GREP_OPTIONS+=" --exclude=./CHANGELOG.md"
-GREP_OPTIONS+=" --exclude=./public/main.min.css"
-GREP_OPTIONS+=" --exclude=./public/bundle.js"
-export GREP_OPTIONS
+# Default Editor
+export EDITOR=vim
 
 # openssl
 export PATH="$(brew --prefix openssl@3.5)/bin:$PATH"
@@ -94,71 +69,16 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init --path)"
 fi
 
-# goenv
-export GOENV_DISABLE_GOROOT=1
-export GOENV_DISABLE_GOPATH=1
-export GOENV_ROOT="$HOME/.goenv"
-export PATH="$GOENV_ROOT/bin:$PATH"
-export GOPATH="/Users/stewart/lob/go"
-eval "$(goenv init -)"
-export PATH="$GOROOT/bin:$PATH"
-export PATH="$GOPATH/bin:$PATH"
-
-# X11
-export PATH="$PATH:/opt/X11/bin"
-
 # .inputrc
 bindkey '^[OA' history-beginning-search-backward
 bindkey '^[OB' history-beginning-search-forward
 
-# Enable Elixir/Erlang REPL History
-export ERL_AFLAGS="-kernel shell_history enabled"
-
-
-# Add Yarn to Path
-export PATH="$PATH:`yarn global bin`"
-
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[[ -f /Users/stewart/picasso/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/stewart/picasso/node_modules/tabtab/.completions/serverless.zsh
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[[ -f /Users/stewart/picasso/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/stewart/picasso/node_modules/tabtab/.completions/sls.zsh
-
-# fzf via Homebrew
-if [ -e /usr/local/opt/fzf/shell/completion.zsh ]; then
-  source /usr/local/opt/fzf/shell/key-bindings.zsh
-  source /usr/local/opt/fzf/shell/completion.zsh
-fi
-
-# fzf via local installation
-if [ -e ~/.fzf ]; then
-  _append_to_path ~/.fzf/bin
-  source ~/.fzf/shell/key-bindings.zsh
-  source ~/.fzf/shell/completion.zsh
-fi
-
-# fzf + ag configuration
-if _has fzf && _has ag; then
-  export FZF_DEFAULT_COMMAND='ag --nocolor -g ""'
-  export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-  export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
-  export FZF_DEFAULT_OPTS='
-  --color dark,hl:33,hl+:37,fg+:235,bg+:136,fg+:254
-  --color info:254,prompt:37,spinner:108,pointer:235,marker:235
-  '
-fi
-
+# fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# tabtab source for slss package
-# uninstall by removing these lines or running `tabtab uninstall slss`
-[[ -f /Users/stewart/.nodenv/versions/8.10.0/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/stewart/.nodenv/versions/8.10.0/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh
-export PATH="/usr/local/opt/swagger-codegen@2/bin:$PATH"
-
-export PATH="/usr/local/opt/redis@3.2/bin:$PATH"
-
-export PATH="$HOME/.poetry/bin:$PATH"
+if _has fzf && _has rg; then
+  export FZF_DEFAULT_COMMAND='rg --files'
+  export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+fi
 
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
