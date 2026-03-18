@@ -8,7 +8,7 @@
 [branch]
   autosetupmerge = true
 [alias]
-  fixup = commit --amend -c head                      ; Append changes to last commit
+	fixup = commit --amend -c HEAD
   prune = remote prune origin                         ; Prune local branches to match origin
   recommit = commit -c ORIG_HEAD                      ; Commit current changes as recently removed head
   show-files = show --name-only                       ; Show names of files updated in last commit
@@ -37,3 +37,5 @@
 [pull]
 	rebase = true
 	ff = only
+[coderabbit]
+	machineId = cli/16625299bb1d4a3ba8b3f40f42023264
