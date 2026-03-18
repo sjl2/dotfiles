@@ -12,7 +12,6 @@ alias gr="git rebase"
 alias gmod="git merge origin/develop"
 alias gmom="git merge origin/main"
 alias grom="git rebase origin/main"
-alias gron="git rebase origin/main"
 alias grod="git rebase origin/develop"
 alias gs="git status"
 alias gsh="git show"
@@ -23,26 +22,12 @@ alias ls="ls -G"
 alias psh="pushd"
 alias pop="popd"
 
-# Vim Aliases
-alias pvim="vim -u NONE"
-
-# Neovim
-alias pnv="nvim -u NONE"
-alias nv="nvim"
-
 # History Aliases
 HIST_FORMAT="'%Y-%m-%d %T:'$(echo -e '\t')"
 alias history="fc -t "$HIST_FORMAT" -il 1"
 
-# Terraform Aliases
-alias tf="terraform"
-alias tfi="terraform init"
-alias tfg="terraform get"
-alias tfp="terraform plan | scenery"
-alias tfa="terraform apply"
-
 # Source
-alias sall="source ~/.aliases ~/.bashrc ~/.bash_profile ~/.zshrc ~/.inputrc ~/.helpers.sh ~/.goto.sh"
+alias sall="source ~/.aliases ~/.zshrc ~/.inputrc ~/.helpers.sh ~/.goto.sh"
 
 # Cursor Personal
 alias cursor_personal='open -n "$HOME/Applications/Cursor Personal.app" --args --user-data-dir "$HOME/Library/Application Support/CursorPersonal"'
