@@ -3,11 +3,25 @@
   "vim.useSystemClipboard": true,
   "vim.useCtrlKeys": true,
   "vim.hlsearch": true,
+  "vim.smartcase": true,
+  "vim.ignorecase": true,
+  "vim.scrolloff": 5,
   "vim.leader": "\\",
   "vim.handleKeys": {
     "<C-a>": false,
     "<C-f>": false
   },
+  "vim.normalModeKeyBindingsNonRecursive": [
+    { "before": ["<CR>"], "commands": [":nohl"] },
+    { "before": ["j"], "after": ["g", "j"] },
+    { "before": ["k"], "after": ["g", "k"] },
+    { "before": ["H"], "after": ["0"] },
+    { "before": ["L"], "after": ["$"] }
+  ],
+  "vim.visualModeKeyBindingsNonRecursive": [
+    { "before": ["H"], "after": ["0"] },
+    { "before": ["L"], "after": ["$"] }
+  ],
   "vim.insertModeKeyBindings": [
     { "before": ["j", "k"], "after": ["<Esc>"] },
     { "before": ["k", "j"], "after": ["<Esc>"] }

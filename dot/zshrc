@@ -47,9 +47,6 @@ export CPPFLAGS="-I$(brew --prefix openssl@3.5)/include"
 export PKG_CONFIG_PATH="$(brew --prefix openssl@3.5)/lib/pkgconfig"
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@3.5)"
 
-# postgres
-export PATH="$(brew --prefix postgresql@14)/bin:$PATH"
-
 # rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
 if which rbenv > /dev/null; then
