@@ -1,0 +1,13 @@
+# Ghostty configuration
+# Symlinked to ~/.config/ghostty/config by setup.sh
+# Reference: https://ghostty.org/docs/config/reference
+
+# Nerd Font, installed via the Brewfile. The glyph coverage matters:
+# robin.zsh-theme's SEGMENT_SEPARATOR is a Powerline glyph and renders as
+# tofu in a font without it. Verify the family name with:
+#   ghostty +list-fonts | grep Meslo
+font-family = MesloLGS Nerd Font Mono
+font-size = 12
+
+# Carried over from the old iTerm2 profile
+scrollback-limit = 10000
