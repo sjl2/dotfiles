@@ -1,0 +1,16 @@
+{
+  "name": "sjl2-dotfiles",
+  "owner": {
+    "name": "Stewart Lynch",
+    "url": "https://github.com/sjl2"
+  },
+  "description": "Stewart Lynch's dotfiles, doubling as a Claude Code marketplace.",
+  "plugins": [
+    {
+      "name": "sjl2",
+      "source": "./",
+      "description": "Personal Claude Code skills, commands, and subagents.",
+      "category": "productivity"
+    }
+  ]
+}
