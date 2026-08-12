@@ -28,18 +28,20 @@ The repo must live at `~/dotfiles` — `setup.sh` symlinks out of that path.
 ## What does it do?
 
 * Installs [Homebrew](https://brew.sh/)
-* Installs CLI tools:
-  cmake, fzf, [gh](https://cli.github.com), jq, postgres, pipenv, pyenv, nodenv,
-  openssl, ripgrep, tmux, tree, vim, wget, yarn, and zsh with
-  zsh-autosuggestions, zsh-completions, and zsh-syntax-highlighting
-* Installs GUI apps:
-  [Claude Code](https://code.claude.com/docs/en/setup), Docker, Google Chrome,
-  Insomnia, iTerm2, ShiftIt, Slack, and Visual Studio Code
+* Installs every CLI tool, GUI app, and font listed in [`Brewfile`](Brewfile) —
+  that file is the source of truth, so read it rather than a list here that would drift
 * Installs [Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh) and makes zsh the login shell
 * Backs up existing dotfiles into `old/`, then symlinks `dot/*` into the home directory
-* Symlinks the `robin` zsh theme and installs [Powerline fonts](https://github.com/powerline/fonts)
+* Symlinks the `robin` zsh theme
 * Links iTerm2 profiles (`iterm/profiles.json`) and VS Code settings (`code/settings.json`)
 * Disables press-and-hold so key repeat works
+
+Packages are installed additively (`brew bundle install`), so anything you install by
+hand is left alone. To see what's missing without installing:
+
+```bash
+brew bundle check --file=Brewfile --verbose
+```
 
 ## After setup
 
