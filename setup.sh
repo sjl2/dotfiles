@@ -125,6 +125,25 @@ echo "...done"
 echo
 
 echo
+echo "Setting up Claude Code..."
+# Soft-fail here and hard-fail at the end: this script has no `set -e` and is a
+# long linear installer, so aborting mid-run would leave a half-configured
+# machine. A silent failure is worse, hence the exit code below.
+AI_SETUP_FAILED=0
+if [ -x "$DOTFILES_DIR/scripts/setup-ai.sh" ]; then
+  "$DOTFILES_DIR/scripts/setup-ai.sh" || AI_SETUP_FAILED=1
+else
+  echo "scripts/setup-ai.sh is missing or not executable - skipping"
+  AI_SETUP_FAILED=1
+fi
+if [ "$AI_SETUP_FAILED" -eq 1 ]; then
+  echo "...FAILED (continuing; see the warning at the end)"
+else
+  echo "...done"
+fi
+echo
+
+echo
 echo "Enabling key repeats on Mac..."
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 echo "...done"
@@ -134,3 +153,10 @@ echo
 echo "Untracked leftovers you may want to remove:"
 echo "  brew uninstall reattach-to-user-namespace the_silver_searcher neovim"
 echo
+
+if [ "${AI_SETUP_FAILED:-0}" -eq 1 ]; then
+  echo "WARNING: Claude Code setup failed. Re-run it on its own:"
+  echo "  ~/dotfiles/scripts/setup-ai.sh"
+  echo
+  exit 1
+fi
