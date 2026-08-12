@@ -1,12 +1,12 @@
 #!/bin/bash
 
-# TODO: install xcode and git
 # TODO: seek inspiration from https://github.com/monfresh/laptop
 
 # CLI Apps to install (e.g. brew install <app>)
 APPS=''
 APPS+=' cmake'
 APPS+=' fzf'
+APPS+=' gh'
 APPS+=' jq'
 APPS+=' postgres'
 APPS+=' pipenv'
@@ -27,6 +27,8 @@ APPS+=' zsh-syntax-highlighting'
 
 # Apps to install with GUIs & Licenses
 APPS_GUI=''
+# claude-code: the cask does not auto-update; `brew upgrade --cask claude-code`
+APPS_GUI+=' claude-code'
 APPS_GUI+=' docker'
 APPS_GUI+=' google-chrome'
 APPS_GUI+=' insomnia'
