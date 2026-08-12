@@ -33,7 +33,7 @@ The repo must live at `~/dotfiles` — `setup.sh` symlinks out of that path.
 * Installs [Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh) and makes zsh the login shell
 * Backs up existing dotfiles into `old/`, then symlinks `dot/*` into the home directory
 * Symlinks the `robin` zsh theme
-* Links iTerm2 profiles (`iterm/profiles.json`) and VS Code settings (`code/settings.json`)
+* Links VS Code settings (`code/settings.json`)
 * Disables press-and-hold so key repeat works
 
 Packages are installed additively (`brew bundle install`), so anything you install by
@@ -50,7 +50,6 @@ A few things can't be automated:
 * `gh auth login` — authenticate the GitHub CLI ([docs](https://cli.github.com/manual/gh_auth_login))
 * `claude` — the first run opens a browser to sign in ([docs](https://code.claude.com/docs/en/setup)).
   The Homebrew cask doesn't auto-update; run `brew upgrade --cask claude-code`.
-* Set the default profile in iTerm2
 
 ## Platforms supported
 
