@@ -103,6 +103,17 @@ echo "...done"
 echo
 
 echo
+echo "Setting up Ghostty..."
+mkdir -p ~/.config/ghostty
+if check_file ~/.config/ghostty/config; then
+  echo "Copying old ghostty config into $OLD_DIR..."
+  cp ~/.config/ghostty/config $OLD_DIR/ghostty-config
+fi
+ln -sf $DOTFILES_DIR/ghostty/config ~/.config/ghostty/config
+echo "...done"
+echo
+
+echo
 echo "Setting up VS Code..."
 mkdir -p ~/Library/Application\ Support/Code/User
 if check_file '~/Library/Application Support/Code/User/settings.json'; then

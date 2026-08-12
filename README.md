@@ -33,7 +33,7 @@ The repo must live at `~/dotfiles` — `setup.sh` symlinks out of that path.
 * Installs [Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh) and makes zsh the login shell
 * Backs up existing dotfiles into `old/`, then symlinks `dot/*` into the home directory
 * Symlinks the `robin` zsh theme
-* Links VS Code settings (`code/settings.json`)
+* Links Ghostty (`ghostty/config`) and VS Code (`code/settings.json`) settings
 * Disables press-and-hold so key repeat works
 
 Packages are installed additively (`brew bundle install`), so anything you install by
