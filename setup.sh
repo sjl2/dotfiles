@@ -67,8 +67,8 @@ echo "Copying home directory dotfiles..."
 # setup
 if [ ! -e $OLD_DIR ]; then
   echo "Creating directory for current dotfiles: $OLD_DIR..."
-  mkdir $OLD_DIR
 fi
+mkdir -p $OLD_DIR
 
 for f in $DOTFILES; do
   if check_file ~/.$f; then
@@ -116,7 +116,7 @@ echo
 echo
 echo "Setting up VS Code..."
 mkdir -p ~/Library/Application\ Support/Code/User
-if check_file '~/Library/Application Support/Code/User/settings.json'; then
+if check_file "$HOME/Library/Application Support/Code/User/settings.json"; then
   echo "Copying old settings.json into $OLD_DIR..."
   cp ~/Library/Application\ Support/Code/User/settings.json $OLD_DIR/vscode-settings.json
 fi
