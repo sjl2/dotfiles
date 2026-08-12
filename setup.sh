@@ -2,40 +2,7 @@
 
 # TODO: seek inspiration from https://github.com/monfresh/laptop
 
-# CLI Apps to install (e.g. brew install <app>)
-APPS=''
-APPS+=' cmake'
-APPS+=' fzf'
-APPS+=' gh'
-APPS+=' jq'
-APPS+=' postgres'
-APPS+=' pipenv'
-APPS+=' pyenv'
-APPS+=' nodenv'
-APPS+=' nodenv/nodenv/nodenv-default-packages'
-APPS+=' openssl'
-APPS+=' ripgrep'
-APPS+=' tmux'
-APPS+=' tree'
-APPS+=' vim'
-APPS+=' wget'
-APPS+=' yarn'
-APPS+=' zsh'
-APPS+=' zsh-autosuggestions'
-APPS+=' zsh-completions'
-APPS+=' zsh-syntax-highlighting'
-
-# Apps to install with GUIs & Licenses
-APPS_GUI=''
-# claude-code: the cask does not auto-update; `brew upgrade --cask claude-code`
-APPS_GUI+=' claude-code'
-APPS_GUI+=' docker'
-APPS_GUI+=' google-chrome'
-APPS_GUI+=' insomnia'
-APPS_GUI+=' iterm2'
-APPS_GUI+=' shiftit'
-APPS_GUI+=' slack'
-APPS_GUI+=' visual-studio-code'
+# Packages live in ./Brewfile
 
 # Variables
 DOTFILES_DIR=~/dotfiles
@@ -70,11 +37,10 @@ function install_brew () {
 }
 
 function install_apps () {
-  echo "Installing$APPS..."
-  brew install $APPS 2> /dev/null
-
-  echo "Installing$APPS_GUI..."
-  brew install --cask $APPS_GUI 2> /dev/null
+  echo "Installing packages from Brewfile..."
+  # --adopt lets casks take over apps already in /Applications (e.g. a Chrome you
+  # installed by hand) instead of erroring out on the existing bundle.
+  HOMEBREW_CASK_OPTS="--adopt" brew bundle install --file="$DOTFILES_DIR/Brewfile"
 }
 
 echo
@@ -89,7 +55,7 @@ if [[ $OSTYPE == darwin* ]]; then
     chsh -s /bin/zsh
   fi
   echo "Installing fzf extensions..."
-  /usr/local/opt/fzf/install
+  "$(brew --prefix)/opt/fzf/install" --all --no-bash
 fi
 echo "...done"
 echo
@@ -122,7 +88,11 @@ echo
 
 echo
 echo "Setting up zsh..."
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+ZSH_CUSTOM_DIR="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
+if [ ! -d "$ZSH_CUSTOM_DIR/plugins/zsh-autosuggestions" ]; then
+  git clone https://github.com/zsh-users/zsh-autosuggestions \
+    "$ZSH_CUSTOM_DIR/plugins/zsh-autosuggestions"
+fi
 mkdir -p ~/.oh-my-zsh/custom/themes
 if check_file ~/.oh-my-zsh/custom/themes/robin.zsh-theme; then
   echo "Copying old robin.zsh-theme into $OLD_DIR..."
@@ -158,20 +128,13 @@ ln -sf $DOTFILES_DIR/code/settings.json ~/Library/Application\ Support/Code/User
 echo "...done"
 echo
 
-if [ -z "$(find ~/Library/Fonts -name '*Powerline*')" ]; then
-  echo
-  echo "Installing Powerline Fonts..."
-  git clone https://github.com/powerline/fonts.git --depth=1
-  cd fonts
-  ./install.sh
-  cd ..
-  rm -rf fonts
-  echo "...done"
-  echo
-fi
-
 echo
 echo "Enabling key repeats on Mac..."
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 echo "...done"
+echo
+
+echo
+echo "Untracked leftovers you may want to remove:"
+echo "  brew uninstall reattach-to-user-namespace the_silver_searcher neovim"
 echo
