@@ -1,0 +1,14 @@
+{
+  "name": "sjl2",
+  "description": "Stewart Lynch's personal Claude Code skills, commands, and subagents.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Stewart Lynch",
+    "url": "https://github.com/sjl2"
+  },
+  "repository": "https://github.com/sjl2/dotfiles",
+  "license": "MIT",
+  "skills": [],
+  "commands": ["./agents/claude/commands/"],
+  "agents": []
+}
