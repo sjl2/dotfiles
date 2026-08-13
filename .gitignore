@@ -1,3 +1,8 @@
 .DS_Store
 old
 dot/config/**
+
+# Agent issue tracker (see docs/agents/issue-tracker.md). Deliberately untracked:
+# the repo is public, and in-progress maps and tickets are working notes, not
+# something to publish. The cost is that they don't follow the repo to another machine.
+.scratch
