@@ -168,6 +168,11 @@ link "$AGENTS_DIR/CLAUDE.md"            "$HOME/.claude/CLAUDE.md"     "claude-CL
 link "$AGENTS_DIR/CLAUDE.md"            "$HOME/AGENTS.md"             "AGENTS.md"
 link "$AGENTS_DIR/claude/settings.json" "$HOME/.claude/settings.json" "claude-settings.json"
 
+# Linked one by one rather than as a directory, matching the skills/commands
+# handling above. There is only the one hook so far; make this a loop if that
+# changes.
+link "$AGENTS_DIR/claude/hooks/tmux-status.sh" "$HOME/.claude/hooks/tmux-status.sh" "claude-hooks/tmux-status.sh"
+
 link_commands_into "$HOME/.claude/commands"
 
 # ~/.agents/skills is where non-Claude harnesses look. Claude Code loads a skill
