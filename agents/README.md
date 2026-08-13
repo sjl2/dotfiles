@@ -85,9 +85,9 @@ sjl2-dotfiles` on the consuming machine. Check your work with `claude plugin val
 
 ## Vendored skills
 
-`agents/skills/` holds all 25 skills [mattpocock/skills](https://github.com/mattpocock/skills)
-ships (MIT). They are copied flat rather than submoduled so they can be edited in place.
-Each `SKILL.md` carries the provenance in its frontmatter:
+`agents/skills/` holds a curated subset of [mattpocock/skills](https://github.com/mattpocock/skills)
+(MIT) — 12 of the 25 it ships. They are copied flat rather than submoduled so they can
+be edited in place. Each `SKILL.md` carries the provenance in its frontmatter:
 
 ```yaml
 # vendored-from: mattpocock/skills
@@ -100,6 +100,35 @@ Each `SKILL.md` carries the provenance in its frontmatter:
 These are YAML comments *inside* the frontmatter block for a reason: an HTML comment
 above the opening `---` would push the frontmatter off line 1, and Claude Code would then
 parse none of it — silently losing `name`, `description`, and `disable-model-invocation`.
+
+### What's kept, and why
+
+Eight chosen for their own sake:
+
+| | |
+|---|---|
+| `grilling` | round-based interview that maps decisions as a tree |
+| `grill-me` | entry point to a grilling session |
+| `grill-with-docs` | grilling that also writes glossary and ADRs |
+| `wayfinder` | charts work too big for one session as decision tickets |
+| `handoff` | compacts a conversation so a fresh agent can resume |
+| `to-questionnaire` | turns a question you can't answer into one for someone else |
+| `wait-what` | stop, re-pitch that |
+| `writing-for-agents` | reference for writing skills, `CLAUDE.md`, `AGENTS.md` |
+
+Four more because the above invoke them — dropping any of these leaves a dangling
+`/skill` reference:
+
+| | needed by |
+|---|---|
+| `domain-modeling` | `grill-with-docs` (it *is* the "with-docs" part), `wayfinder` |
+| `prototype` | `wayfinder` ticket type |
+| `research` | `wayfinder` ticket type |
+| `setup-matt-pocock-skills` | `wayfinder` tracker config |
+
+`setup-matt-pocock-skills` still mentions `triage` and `improve-codebase-architecture`,
+which aren't installed. Those references are conditional in its own text ("only if
+`triage` is installed"), so it degrades cleanly.
 
 ### Local edits
 
