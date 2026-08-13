@@ -70,12 +70,14 @@
     "jupyter-notebook": "left"
   },
   "window.zoomLevel": 1,
-  "workbench.colorTheme": "Default Dark+",
+  "workbench.colorTheme": "Dark+",
   "github.copilot.editor.enableAutoCompletions": true,
   "ruby.specCommand": "doppler run -- bundle exec -- rspec",
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "githubPullRequests.terminalLinksHandler": "github",
-  "makefile.configureOnOpen": true
+  "makefile.configureOnOpen": true,
+  "editor.cursorSurroundingLines": 5,
+  "claudeCode.preferredLocation": "sidebar"
 }
