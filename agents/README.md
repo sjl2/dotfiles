@@ -143,16 +143,28 @@ which aren't installed. Those references are conditional in its own text ("only 
 git ls-remote https://github.com/mattpocock/skills refs/heads/main
 grep -h vendored-sha agents/skills/*/SKILL.md | sort -u
 
-# where will the conflicts be?
-grep -rn 'local-edits:' agents/skills/*/SKILL.md | grep -v ': *none'
-
 # re-vendor onto a branch and review
 git switch -c vendor-sync
-./scripts/vendor-skills.sh <new-sha>
+./scripts/vendor-skills.sh --sha <new-sha>
 git diff agents/skills
 ```
 
-The diff shows upstream's changes *and* the reversion of your local edits — re-apply
-those from the list above, reset each `local-edits:` field, then merge. If the local
-edits ever outgrow that, keep a pristine vendored tree on its own branch and re-vendor
-onto that instead, so you get real three-way merges.
+By default the script refreshes **only the skills already vendored here**, so a re-sync
+never resurrects one that was pruned. It reports the upstream skills it isn't tracking
+rather than passing over them silently. Other modes:
+
+```bash
+./scripts/vendor-skills.sh --skill tdd      # add or refresh one (repeatable)
+./scripts/vendor-skills.sh --all            # everything upstream ships
+```
+
+Vendoring replaces the whole skill directory, so **local edits are reverted** — the
+script lists which ones before it does it. The diff then shows upstream's changes *and*
+the loss of your edits; re-apply them from the local-edits list above and reset each
+`local-edits:` field. `git checkout agents/skills` undoes the whole run.
+
+A skill of your own that shares a name with an upstream one is never touched: curated
+mode only refreshes directories carrying a `# vendored-from:` stamp.
+
+If the local edits ever outgrow re-applying by hand, keep a pristine vendored tree on
+its own branch and re-vendor onto that instead, so you get real three-way merges.
