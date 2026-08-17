@@ -11,3 +11,14 @@ font-size = 12
 
 # Carried over from the old iTerm2 profile
 scrollback-limit = 10000
+
+# Clickable URLs need no config: link-url and link-previews default to on, and
+# the gesture is ⌘-hover then ⌘-click. Both are deliberately absent here so we
+# don't pin a default that upstream may improve.
+#
+# Inside tmux it is ⇧⌘-click instead. tmux.conf sets `mouse on`, so tmux is
+# consuming the mouse and Ghostty never gets the hover to match a URL against.
+# Shift suppresses the mouse report, handing the click back to Ghostty. This is
+# also why mouse-shift-capture is left at its default of false — setting it true
+# would send shift to tmux as well and break the escape hatch entirely.
+# Plain ⌘-click under tmux is a known upstream gap (ghostty-org/ghostty#3848).
