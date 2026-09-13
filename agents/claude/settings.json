@@ -1,36 +1,52 @@
 {
-  "theme": "dark-daltonized",
   "includeCoAuthoredBy": false,
-  "preferredNotifChannel": "terminal_bell",
   "hooks": {
     "Notification": [
       {
         "matcher": "permission_prompt",
         "hooks": [
-          { "type": "command", "command": "\"$HOME/.claude/hooks/tmux-status.sh\" attn", "async": true }
+          {
+            "type": "command",
+            "command": "\"$HOME/.claude/hooks/tmux-status.sh\" attn",
+            "async": true
+          }
         ]
       }
     ],
     "Stop": [
       {
         "hooks": [
-          { "type": "command", "command": "\"$HOME/.claude/hooks/tmux-status.sh\" clear", "async": true }
+          {
+            "type": "command",
+            "command": "\"$HOME/.claude/hooks/tmux-status.sh\" clear",
+            "async": true
+          }
         ]
       }
     ],
     "UserPromptSubmit": [
       {
         "hooks": [
-          { "type": "command", "command": "\"$HOME/.claude/hooks/tmux-status.sh\" clear", "async": true }
+          {
+            "type": "command",
+            "command": "\"$HOME/.claude/hooks/tmux-status.sh\" clear",
+            "async": true
+          }
         ]
       }
     ],
     "SessionEnd": [
       {
         "hooks": [
-          { "type": "command", "command": "\"$HOME/.claude/hooks/tmux-status.sh\" clear", "async": true }
+          {
+            "type": "command",
+            "command": "\"$HOME/.claude/hooks/tmux-status.sh\" clear",
+            "async": true
+          }
         ]
       }
     ]
-  }
+  },
+  "theme": "dark-daltonized",
+  "preferredNotifChannel": "terminal_bell"
 }
