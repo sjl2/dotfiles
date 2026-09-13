@@ -48,5 +48,6 @@
     ]
   },
   "theme": "dark-daltonized",
-  "preferredNotifChannel": "terminal_bell"
+  "preferredNotifChannel": "terminal_bell",
+  "tui": "fullscreen"
 }
