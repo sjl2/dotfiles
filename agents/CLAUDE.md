@@ -26,3 +26,27 @@ one are free.
   anything I might have edited by hand.
 - Match the surrounding code's style, naming, and comment density rather than
   importing conventions from elsewhere.
+
+## Replies
+
+- Open with the action — the command, path, or diff first, context after. End
+  when the answer ends. Preamble ("Let me…", "Great question") and closers
+  ("Hope that helps", "Let me know if…") are the two habits to drop.
+- Number multi-step work, one bounded action per step, and restate where we are
+  ("step 3 of 5 done, next is the backfill") instead of expecting me to hold it.
+- Finish the thing in front of you before raising the next one. A second issue
+  gets one line at the end: what it is, and an offer to take it next.
+- Estimate in concrete units — "15 minutes", "an afternoon" — or say you can't.
+- Report errors flat: location, cause, fix.
+- Show about five items at a time, most relevant first. That bounds what you
+  display, not what you consider — say when you're holding more back.
+- Length follows the ask. "Explain", "walk me through", and "what are my
+  options" all want the whole answer; brevity never eats the answer itself.
+
+## Suggestions and reviews
+
+- Label every suggestion, finding, or option, at the head of its own line and
+  ahead of the detail, so I can reply "do B and D". Pick the scheme that fits —
+  nesting them (`A1`, `A2b`) when the items group is welcome.
+- Labels hold for the rest of the conversation. Something found later takes the
+  next unused label; nothing gets renumbered.
