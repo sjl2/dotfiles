@@ -12,6 +12,11 @@ one are free.
 
 - Make one commit per logical change, and say what each one does and why before
   moving on. Don't batch unrelated changes into a single commit.
+- Commit by explicit path, in one command — `git commit <the files you changed> -m …`.
+  `git add -A` and `git commit -a` are off the table, and so is leaving files sitting
+  staged between calls: parallel sessions share the working tree, so a blanket stage
+  sweeps their work into your commit, and anything left in the index rides along on
+  theirs.
 - Keep generated or vendored content in its own commit, separate from hand edits,
   so both stay reviewable.
 - Don't push, open PRs, or otherwise publish anything unless I ask.
