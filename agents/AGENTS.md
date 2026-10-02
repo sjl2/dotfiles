@@ -1,9 +1,9 @@
 # Global instructions
 
 <!--
-Symlinked from ~/dotfiles/agents/CLAUDE.md by scripts/setup-ai.sh.
+Symlinked from ~/dotfiles/agents/AGENTS.md by scripts/setup-ai.sh.
 Applies to every project on this machine, so keep it general — anything
-repo-specific belongs in that repo's own CLAUDE.md.
+repo-specific belongs in that repo's own AGENTS.md.
 HTML comments are stripped before this file is injected, so notes like this
 one are free.
 -->
@@ -22,8 +22,8 @@ one are free.
 - Don't push, open PRs, or otherwise publish anything unless I ask.
 
 <!--
-TODO: write the rule - agents don't author or edit the prose of CLAUDE.md,
-AGENTS.md, or a SKILL.md; they only insert my wording.
+TODO: write the rule - agents don't author or edit the prose of AGENTS.md or a
+SKILL.md; they only insert my wording.
 Replace this comment with a bullet to make it live. HTML comments are stripped
 before injection, so while it sits here the agent never sees it.
 -->
