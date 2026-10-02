@@ -127,6 +127,7 @@ link_skills_into () {
   prune_stale "$dest" "$AGENTS_DIR/skills"
 }
 
+# TODO: drop this if no commands come back
 link_commands_into () {
   local dest="$1" f
   assert_real_dir "$dest"
@@ -162,6 +163,7 @@ if [ ! -d "$AGENTS_DIR" ]; then
 fi
 run mkdir -p "$OLD_DIR"
 
+# TODO: decide whether ~/.claude/AGENTS.md should replace the CLAUDE.md destination
 # Destination stays CLAUDE.md: read under every instructionFiles setting, where
 # ~/.claude/AGENTS.md needs the default. ~/AGENTS.md is for Codex and friends.
 link "$AGENTS_DIR/AGENTS.md"            "$HOME/.claude/CLAUDE.md"     "claude-CLAUDE.md"
