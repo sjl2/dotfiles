@@ -9,6 +9,6 @@
   "repository": "https://github.com/sjl2/dotfiles",
   "license": "MIT",
   "skills": [],
-  "commands": ["./agents/claude/commands/"],
+  "commands": [],
   "agents": []
 }
