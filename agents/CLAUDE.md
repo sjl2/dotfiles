@@ -21,6 +21,13 @@ one are free.
   so both stay reviewable.
 - Don't push, open PRs, or otherwise publish anything unless I ask.
 
+<!--
+TODO: write the rule - agents don't author or edit the prose of CLAUDE.md,
+AGENTS.md, or a SKILL.md; they only insert my wording.
+Replace this comment with a bullet to make it live. HTML comments are stripped
+before injection, so while it sits here the agent never sees it.
+-->
+
 ## Code
 
 - Automate setup rather than documenting it. A new tool belongs in the install
