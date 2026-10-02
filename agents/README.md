@@ -109,19 +109,19 @@ their own to sit in.
 Dropped in `c210a8d`; use counts are from seven weeks of history. Recover text with
 `git show c210a8d^:agents/skills/<name>/SKILL.md`.
 
-- TODO: investigate adding back `grilling` - 4 uses, and `grill` is broken without it
 - TODO: investigate adding back `wayfinder` - 4 uses, map stalled at 1 of 9 tickets
 - TODO: investigate adding back `writing-for-agents` - 2 uses
 - TODO: investigate adding back `research` - 1 use
 - TODO: investigate adding back `wait-what` - 1 use
 - TODO: investigate adding back `setup-matt-pocock-skills` - 0 uses since its one run
-- TODO: investigate adding back `grill-me` - 0 uses, one-line delegator to `grilling`
+- TODO: investigate adding back `grill-me` - 0 uses, was the no-docs `grilling`; `grill` is now the only entry point
 - TODO: investigate adding back `handoff` - 0 uses
 - TODO: investigate adding back `to-questionnaire` - 0 uses
 - TODO: investigate adding back `prototype` - 0 uses
 
 ### The two kept skills
 
+- TODO: dictate `grill`'s prose section by section - its headings are already the outline
 - TODO: decide whether to review `domain-modeling` by section or rewrite it short
 - TODO: say what `grill` and `domain-modeling` are for, once the prose is mine
 
