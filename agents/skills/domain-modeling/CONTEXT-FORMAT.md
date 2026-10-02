@@ -1,3 +1,4 @@
+<!-- TODO: review the glossary format -->
 # CONTEXT.md Format
 
 ## Structure
