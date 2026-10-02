@@ -99,4 +99,33 @@ These are YAML comments *inside* the frontmatter block for a reason: an HTML com
 above the opening `---` would push the frontmatter off line 1, and Claude Code would then
 parse none of it — silently losing `name`, `description`, and `disable-model-invocation`.
 
-<!-- TODO: say what grill and domain-modeling are for, once they are mine -->
+## Remaining work
+
+`grep -rn TODO agents/` is the whole list. These are the items with no file of
+their own to sit in.
+
+### Add back?
+
+Dropped in `c210a8d`. Use counts are from seven weeks of `~/.claude/history.jsonl`
+plus the session transcripts. Recover any text with:
+
+```bash
+git show c210a8d^:agents/skills/<name>/SKILL.md
+```
+
+- TODO: `grilling` - 4 uses, the most-used; `grill` delegates to it and now points at nothing
+- TODO: `wayfinder` - 4 uses; its map stalled at 1 of 9 tickets, backed up in `old/`
+- TODO: `writing-for-agents` - 2 uses; the reference for rewriting the others
+- TODO: `research` - 1 use
+- TODO: `wait-what` - 1 use
+- TODO: `setup-matt-pocock-skills` - already run; only needed to switch issue trackers
+- TODO: `grill-me` - one-line delegator to `grilling`
+- TODO: `handoff` - never invoked
+- TODO: `to-questionnaire` - never invoked
+- TODO: `prototype` - never invoked
+
+### Once the prose is mine
+
+- TODO: say what `grill` and `domain-modeling` are for
+- TODO: list each skill in `skills` in `plugin.json`
+- TODO: drop the `vendored-*` stamps from any skill fully rewritten
