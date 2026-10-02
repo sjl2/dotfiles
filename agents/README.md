@@ -8,8 +8,6 @@ agents/
   CLAUDE.md            user-level instructions -> ~/.claude/CLAUDE.md and ~/AGENTS.md
   claude/
     settings.json      -> ~/.claude/settings.json
-    commands/          flat .md commands, linked one by one
-    subagents/         subagent definitions, published by the plugin only
   skills/
     <name>/SKILL.md    linked one by one into ~/.claude/skills and ~/.agents/skills
 ```
@@ -20,7 +18,7 @@ agents/
 |---|---|---|
 | How | `scripts/setup-ai.sh` (run by `setup.sh`) | the plugin |
 | Gets | everything, including the vendored skills | only my own skills |
-| Invoked as | `/tdd` | `/sjl2:tdd` |
+| Invoked as | `/grill` | `/sjl2:grill` |
 | Updates | `git pull` — links are live | `/plugin marketplace update sjl2-dotfiles` |
 
 ```bash
@@ -38,7 +36,7 @@ If GitHub shorthand fails on a locked-down machine it is cloning over SSH — ei
 by default.
 
 **Don't run both on the same machine.** Plugin skills are namespaced, so you would get
-both `/tdd` and `/sjl2:tdd` — listed twice, and charged to context twice. `setup-ai.sh`
+both `/grill` and `/sjl2:grill` — listed twice, and charged to context twice. `setup-ai.sh`
 warns if it finds the plugin installed. To try the plugin without installing it:
 `claude --plugin-dir ~/dotfiles`.
 
@@ -86,12 +84,12 @@ sjl2-dotfiles` on the consuming machine. Check your work with `claude plugin val
 ## Vendored skills
 
 `agents/skills/` holds a curated subset of [mattpocock/skills](https://github.com/mattpocock/skills)
-(MIT) — 12 of the 25 it ships. They are copied flat rather than submoduled so they can
+(MIT) — 2 of the 25 it ships. They are copied flat rather than submoduled so they can
 be edited in place. Each `SKILL.md` carries the provenance in its frontmatter:
 
 ```yaml
 # vendored-from: mattpocock/skills
-# vendored-path: skills/engineering/tdd
+# vendored-path: skills/engineering/domain-modeling
 # vendored-sha:  84fdeffd12f2ee307994d1eb6feb48173b6e0502
 # vendored-on:   2026-08-12
 # local-edits:   none
@@ -101,70 +99,4 @@ These are YAML comments *inside* the frontmatter block for a reason: an HTML com
 above the opening `---` would push the frontmatter off line 1, and Claude Code would then
 parse none of it — silently losing `name`, `description`, and `disable-model-invocation`.
 
-### What's kept, and why
-
-Eight chosen for their own sake:
-
-| | |
-|---|---|
-| `grilling` | round-based interview that maps decisions as a tree |
-| `grill-me` | entry point to a grilling session |
-| `grill-with-docs` | grilling that also writes glossary and ADRs |
-| `wayfinder` | charts work too big for one session as decision tickets |
-| `handoff` | compacts a conversation so a fresh agent can resume |
-| `to-questionnaire` | turns a question you can't answer into one for someone else |
-| `wait-what` | stop, re-pitch that |
-| `writing-for-agents` | reference for writing skills, `CLAUDE.md`, `AGENTS.md` |
-
-Four more because the above invoke them — dropping any of these leaves a dangling
-`/skill` reference:
-
-| | needed by |
-|---|---|
-| `domain-modeling` | `grill-with-docs` (it *is* the "with-docs" part), `wayfinder` |
-| `prototype` | `wayfinder` ticket type |
-| `research` | `wayfinder` ticket type |
-| `setup-matt-pocock-skills` | `wayfinder` tracker config |
-
-`setup-matt-pocock-skills` still mentions `triage` and `improve-codebase-architecture`,
-which aren't installed. Those references are conditional in its own text ("only if
-`triage` is installed"), so it degrades cleanly.
-
-### Local edits
-
-- `grilling`, `grill-me`, `grill-with-docs` — ask questions with the `AskUserQuestion`
-  tool so they render as selectable options. The instruction lives in `grilling`; the
-  other two are one-line delegations to it.
-
-### Re-syncing with upstream
-
-```bash
-# what's upstream, and what am I on?
-git ls-remote https://github.com/mattpocock/skills refs/heads/main
-grep -h vendored-sha agents/skills/*/SKILL.md | sort -u
-
-# re-vendor onto a branch and review
-git switch -c vendor-sync
-./scripts/vendor-skills.sh --sha <new-sha>
-git diff agents/skills
-```
-
-By default the script refreshes **only the skills already vendored here**, so a re-sync
-never resurrects one that was pruned. It reports the upstream skills it isn't tracking
-rather than passing over them silently. Other modes:
-
-```bash
-./scripts/vendor-skills.sh --skill tdd      # add or refresh one (repeatable)
-./scripts/vendor-skills.sh --all            # everything upstream ships
-```
-
-Vendoring replaces the whole skill directory, so **local edits are reverted** — the
-script lists which ones before it does it. The diff then shows upstream's changes *and*
-the loss of your edits; re-apply them from the local-edits list above and reset each
-`local-edits:` field. `git checkout agents/skills` undoes the whole run.
-
-A skill of your own that shares a name with an upstream one is never touched: curated
-mode only refreshes directories carrying a `# vendored-from:` stamp.
-
-If the local edits ever outgrow re-applying by hand, keep a pristine vendored tree on
-its own branch and re-vendor onto that instead, so you get real three-way merges.
+<!-- TODO: say what grill and domain-modeling are for, once they are mine -->
