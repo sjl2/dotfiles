@@ -106,26 +106,27 @@ their own to sit in.
 
 ### Add back?
 
-Dropped in `c210a8d`. Use counts are from seven weeks of `~/.claude/history.jsonl`
-plus the session transcripts. Recover any text with:
+Dropped in `c210a8d`; use counts are from seven weeks of history. Recover text with
+`git show c210a8d^:agents/skills/<name>/SKILL.md`.
 
-```bash
-git show c210a8d^:agents/skills/<name>/SKILL.md
-```
+- TODO: investigate adding back `grilling` - 4 uses, and `grill` is broken without it
+- TODO: investigate adding back `wayfinder` - 4 uses, map stalled at 1 of 9 tickets
+- TODO: investigate adding back `writing-for-agents` - 2 uses
+- TODO: investigate adding back `research` - 1 use
+- TODO: investigate adding back `wait-what` - 1 use
+- TODO: investigate adding back `setup-matt-pocock-skills` - 0 uses since its one run
+- TODO: investigate adding back `grill-me` - 0 uses, one-line delegator to `grilling`
+- TODO: investigate adding back `handoff` - 0 uses
+- TODO: investigate adding back `to-questionnaire` - 0 uses
+- TODO: investigate adding back `prototype` - 0 uses
 
-- TODO: `grilling` - 4 uses, the most-used; `grill` delegates to it and now points at nothing
-- TODO: `wayfinder` - 4 uses; its map stalled at 1 of 9 tickets, backed up in `old/`
-- TODO: `writing-for-agents` - 2 uses; the reference for rewriting the others
-- TODO: `research` - 1 use
-- TODO: `wait-what` - 1 use
-- TODO: `setup-matt-pocock-skills` - already run; only needed to switch issue trackers
-- TODO: `grill-me` - one-line delegator to `grilling`
-- TODO: `handoff` - never invoked
-- TODO: `to-questionnaire` - never invoked
-- TODO: `prototype` - never invoked
+### The two kept skills
 
-### Once the prose is mine
+- TODO: decide whether to review `domain-modeling` by section or rewrite it short
+- TODO: say what `grill` and `domain-modeling` are for, once the prose is mine
 
-- TODO: say what `grill` and `domain-modeling` are for
-- TODO: list each skill in `skills` in `plugin.json`
+### Cleanup
+
+- TODO: list each skill in `skills` in `plugin.json` once its prose is mine
 - TODO: drop the `vendored-*` stamps from any skill fully rewritten
+- TODO: delete `old/scratch-claude-working-style/` once `wayfinder` is decided
