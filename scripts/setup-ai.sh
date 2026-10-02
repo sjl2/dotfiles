@@ -162,10 +162,10 @@ if [ ! -d "$AGENTS_DIR" ]; then
 fi
 run mkdir -p "$OLD_DIR"
 
-# Claude Code reads ~/.claude/CLAUDE.md, not ~/AGENTS.md. The second link is
-# the cross-harness convention (Codex and friends), not a Claude Code path.
-link "$AGENTS_DIR/CLAUDE.md"            "$HOME/.claude/CLAUDE.md"     "claude-CLAUDE.md"
-link "$AGENTS_DIR/CLAUDE.md"            "$HOME/AGENTS.md"             "AGENTS.md"
+# Destination stays CLAUDE.md: read under every instructionFiles setting, where
+# ~/.claude/AGENTS.md needs the default. ~/AGENTS.md is for Codex and friends.
+link "$AGENTS_DIR/AGENTS.md"            "$HOME/.claude/CLAUDE.md"     "claude-CLAUDE.md"
+link "$AGENTS_DIR/AGENTS.md"            "$HOME/AGENTS.md"             "AGENTS.md"
 link "$AGENTS_DIR/claude/settings.json" "$HOME/.claude/settings.json" "claude-settings.json"
 
 # Linked one by one rather than as a directory, matching the skills/commands

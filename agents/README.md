@@ -5,7 +5,7 @@ hand-copying anything.
 
 ```
 agents/
-  CLAUDE.md            user-level instructions -> ~/.claude/CLAUDE.md and ~/AGENTS.md
+  AGENTS.md            user-level instructions -> ~/.claude/CLAUDE.md and ~/AGENTS.md
   claude/
     settings.json      -> ~/.claude/settings.json
   skills/
@@ -74,7 +74,7 @@ Two manifest behaviors worth remembering:
   top-level `skills/` directory in this repo.
 - `agents` is `[]` rather than absent. It replaces the default scan, and the default is
   `<plugin root>/agents/` — this directory. Left undeclared, Claude Code would try to
-  parse `agents/CLAUDE.md` as a subagent. It accepts `.md` file paths only, not
+  parse `agents/AGENTS.md` as a subagent. It accepts `.md` file paths only, not
   directories, so each subagent gets listed individually.
 
 To release: bump `version` in `plugin.json`, push, then `/plugin marketplace update
