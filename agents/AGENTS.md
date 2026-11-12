@@ -38,6 +38,8 @@ before injection, so while it sits here the agent never sees it.
   anything I might have edited by hand.
 - Match the surrounding code's style, naming, and comment density rather than
   importing conventions from elsewhere.
+- Use the Edit tool for editing files unless there's a performance reason for
+  using a script.
 
 ## Replies
 
