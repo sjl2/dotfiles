@@ -12,6 +12,11 @@ font-size = 12
 # Carried over from the old iTerm2 profile
 scrollback-limit = 10000
 
+# Left Option sends Meta, so Claude Code's Option+Enter (newline) and Option+P
+# (model switch) work, and so do zsh's Alt+B/Alt+F word motions. Only the left
+# key: right Option still types special characters like ©, ™, and accents.
+macos-option-as-alt = left
+
 # Clickable URLs need no config: link-url and link-previews default to on, and
 # the gesture is ⌘-hover then ⌘-click. Both are deliberately absent here so we
 # don't pin a default that upstream may improve.
