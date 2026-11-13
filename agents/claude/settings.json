@@ -53,6 +53,6 @@
     ]
   },
   "theme": "dark-daltonized",
-  "preferredNotifChannel": "terminal_bell",
+  "preferredNotifChannel": "ghostty",
   "tui": "fullscreen"
 }
