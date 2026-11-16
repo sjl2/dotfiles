@@ -79,5 +79,7 @@
   "githubPullRequests.terminalLinksHandler": "github",
   "makefile.configureOnOpen": true,
   "editor.cursorSurroundingLines": 5,
-  "claudeCode.preferredLocation": "sidebar"
+  "claudeCode.preferredLocation": "sidebar",
+  "js/ts.experimental.useTsgo": true,
+  "editor.unicodeHighlight.nonBasicASCII": false
 }
