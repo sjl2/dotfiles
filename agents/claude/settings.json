@@ -54,5 +54,6 @@
   },
   "theme": "dark-daltonized",
   "preferredNotifChannel": "ghostty",
-  "tui": "fullscreen"
+  "tui": "fullscreen",
+  "model": "opus"
 }
