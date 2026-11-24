@@ -16,7 +16,6 @@ brew "goenv"
 brew "jq"
 brew "nodenv"
 brew "nodenv/nodenv/nodenv-default-packages"
-brew "openssl@3"
 brew "pipenv"
 brew "postgresql@18"
 brew "pyenv"
@@ -28,6 +27,9 @@ brew "wget"
 brew "yarn"
 brew "zsh"
 brew "zsh-syntax-highlighting" # sourced by dot/zshrc
+
+# openssl@3 is deliberately absent: postgresql, pyenv, tmux and wget pull it in,
+# and ruby-build and pyenv find Homebrew's copy without exported build flags.
 
 # zsh-autosuggestions is deliberately absent: dot/zshrc loads it as an oh-my-zsh
 # plugin, which setup.sh clones separately. Installing the formula too is a no-op.
