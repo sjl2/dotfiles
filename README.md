@@ -35,7 +35,12 @@ The repo must live at `~/dotfiles` — `setup.sh` symlinks out of that path.
 * Symlinks the `robin` zsh theme
 * Links Ghostty (`ghostty/config`) and VS Code (`code/settings.json`) settings
 * Links Claude Code config and skills from [`agents/`](agents/README.md) into `~/.claude`
-* Disables press-and-hold so key repeat works
+* Sets macOS preferences (log out and back in afterwards for them to take effect):
+  * Caps Lock → Control on every keyboard, via a LaunchAgent from [`macos/`](macos/)
+  * Key repeat on (press-and-hold off), at the fastest rate and shortest delay
+  * Tab moves focus between all controls
+  * Faster trackpad tracking, tap to click, and three-finger drag (swipes move to four fingers)
+  * Dark mode
 
 Packages are installed additively (`brew bundle install`), so anything you install by
 hand is left alone. To see what's missing without installing:
