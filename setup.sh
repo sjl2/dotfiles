@@ -29,10 +29,23 @@ function check_file () {
   [ -f "$1" ] && [ ! -h "$1" ]
 }
 
+function load_brew () {
+  for brew_bin in /opt/homebrew/bin/brew /usr/local/bin/brew; do
+    if [ -x "$brew_bin" ]; then
+      eval "$("$brew_bin" shellenv)"
+      return 0
+    fi
+  done
+  return 1
+}
+
 function install_brew () {
-  if ! type brew > /dev/null 2>&1; then
+  # The installer doesn't put brew on this script's PATH, and on a fresh machine
+  # ~/.zshrc (which does) isn't linked yet, so look in Homebrew's standard prefixes.
+  if ! type brew > /dev/null 2>&1 && ! load_brew; then
     echo "Installing brew..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+    load_brew
   fi
 }
 
@@ -47,15 +60,24 @@ echo
 echo "Setting up dependencies..."
 if [[ $OSTYPE == darwin* ]]; then
   install_brew
-  install_apps
+  # Soft-fail like the Claude Code step below: the dotfile links don't need brew.
+  BREW_FAILED=0
+  if type brew > /dev/null 2>&1; then
+    install_apps
+  else
+    echo "brew is still missing after the install - skipping packages and fzf"
+    BREW_FAILED=1
+  fi
 
   if [ ! -d ~/.oh-my-zsh ]; then
     echo "Installing Oh My Zsh..."
     curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
     chsh -s /bin/zsh
   fi
-  echo "Installing fzf extensions..."
-  "$(brew --prefix)/opt/fzf/install" --all --no-bash
+  if [ "$BREW_FAILED" -eq 0 ]; then
+    echo "Installing fzf extensions..."
+    "$(brew --prefix)/opt/fzf/install" --all --no-bash
+  fi
 fi
 echo "...done"
 echo
@@ -193,9 +215,18 @@ echo "Untracked leftovers you may want to remove:"
 echo "  brew uninstall reattach-to-user-namespace the_silver_searcher neovim"
 echo
 
+if [ "${BREW_FAILED:-0}" -eq 1 ]; then
+  echo "WARNING: Homebrew isn't installed. Check the installer output above (it needs"
+  echo "an admin account), then re-run ./setup.sh."
+  echo
+fi
+
 if [ "${AI_SETUP_FAILED:-0}" -eq 1 ]; then
   echo "WARNING: Claude Code setup failed. Re-run it on its own:"
   echo "  ~/dotfiles/scripts/setup-ai.sh"
   echo
+fi
+
+if [ "${BREW_FAILED:-0}" -eq 1 ] || [ "${AI_SETUP_FAILED:-0}" -eq 1 ]; then
   exit 1
 fi
