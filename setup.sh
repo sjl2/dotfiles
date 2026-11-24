@@ -44,7 +44,10 @@ function install_brew () {
   # ~/.zshrc (which does) isn't linked yet, so look in Homebrew's standard prefixes.
   if ! type brew > /dev/null 2>&1 && ! load_brew; then
     echo "Installing brew..."
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+    # NONINTERACTIVE skips the installer's "Press RETURN" prompt, but then it fails
+    # outright without cached sudo, so ask for the password once up front.
+    sudo -v
+    NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     load_brew
   fi
 }
