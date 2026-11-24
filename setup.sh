@@ -144,9 +144,48 @@ fi
 echo
 
 echo
-echo "Enabling key repeats on Mac..."
-defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
-echo "...done"
+echo "Setting macOS preferences..."
+if [[ $OSTYPE == darwin* ]]; then
+  # Keyboard: press-and-hold off so keys repeat, at the fastest rate and shortest delay
+  defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+  defaults write NSGlobalDomain KeyRepeat -int 2
+  defaults write NSGlobalDomain InitialKeyRepeat -int 15
+  # Tab moves focus between all controls, not just text fields and lists
+  defaults write NSGlobalDomain AppleKeyboardUIMode -int 2
+
+  # Caps Lock -> Control. Copied rather than symlinked: launchd can skip symlinked
+  # agents at login.
+  CAPSLOCK_AGENT=com.sjl2.capslock-to-control.plist
+  mkdir -p ~/Library/LaunchAgents
+  if [ -f ~/Library/LaunchAgents/$CAPSLOCK_AGENT ] &&
+     ! cmp -s ~/Library/LaunchAgents/$CAPSLOCK_AGENT $DOTFILES_DIR/macos/$CAPSLOCK_AGENT; then
+    echo "Copying old $CAPSLOCK_AGENT into $OLD_DIR..."
+    cp ~/Library/LaunchAgents/$CAPSLOCK_AGENT $OLD_DIR
+  fi
+  cp $DOTFILES_DIR/macos/$CAPSLOCK_AGENT ~/Library/LaunchAgents/
+  # The agent only runs at login, so apply the mapping now as well
+  /usr/bin/hidutil property --set '{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x700000039,"HIDKeyboardModifierMappingDst":0x7000000E0}]}' > /dev/null
+
+  # Trackpad: faster tracking, tap to click, three-finger drag. Written to both the
+  # built-in and Bluetooth (Magic Trackpad) domains. Three-finger drag takes over the
+  # three-finger swipes, so they move to four fingers.
+  defaults write NSGlobalDomain com.apple.trackpad.scaling -float 1.5
+  defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+  defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+  for domain in com.apple.AppleMultitouchTrackpad com.apple.driver.AppleBluetoothMultitouch.trackpad; do
+    defaults write $domain Clicking -bool true
+    defaults write $domain TrackpadThreeFingerDrag -bool true
+    defaults write $domain TrackpadThreeFingerHorizSwipeGesture -int 0
+    defaults write $domain TrackpadThreeFingerVertSwipeGesture -int 0
+    defaults write $domain TrackpadFourFingerHorizSwipeGesture -int 2
+    defaults write $domain TrackpadFourFingerVertSwipeGesture -int 2
+  done
+
+  # Dark mode. Uses defaults rather than osascript, which would switch it immediately
+  # but needs an Automation permission prompt for System Events.
+  defaults write NSGlobalDomain AppleInterfaceStyle -string Dark
+fi
+echo "...done (log out and back in for keyboard, trackpad and appearance changes)"
 echo
 
 echo
