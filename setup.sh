@@ -45,9 +45,15 @@ function install_brew () {
   if ! type brew > /dev/null 2>&1 && ! load_brew; then
     echo "Installing brew..."
     # NONINTERACTIVE skips the installer's "Press RETURN" prompt, but then it fails
-    # outright without cached sudo, so ask for the password once up front.
-    sudo -v
-    NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    # outright without cached sudo, so ask for the password once up front. Managed
+    # Macs often disable sudo caching (timestamp_timeout=0); there, fall back to the
+    # interactive installer so it can ask for the password itself.
+    INSTALL_SH="$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    if sudo -v && sudo -n true 2> /dev/null; then
+      NONINTERACTIVE=1 /bin/bash -c "$INSTALL_SH"
+    else
+      /bin/bash -c "$INSTALL_SH"
+    fi
     load_brew
   fi
 }
