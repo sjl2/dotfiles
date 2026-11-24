@@ -210,21 +210,6 @@ fi
 echo "...done (log out and back in for keyboard, trackpad and appearance changes)"
 echo
 
-# Packages this repo used to install. Only named when actually present, so a fresh
-# machine doesn't get told to uninstall things it never had.
-LEFTOVERS=''
-if type brew > /dev/null 2>&1; then
-  for pkg in reattach-to-user-namespace the_silver_searcher neovim; do
-    brew list --formula $pkg > /dev/null 2>&1 && LEFTOVERS+=" $pkg"
-  done
-fi
-if [ -n "$LEFTOVERS" ]; then
-  echo
-  echo "Untracked leftovers you may want to remove:"
-  echo "  brew uninstall$LEFTOVERS"
-  echo
-fi
-
 if [ "${BREW_FAILED:-0}" -eq 1 ]; then
   echo "WARNING: Homebrew isn't installed. Check the installer output above (it needs"
   echo "an admin account), then re-run ./setup.sh."
